@@ -9,7 +9,7 @@ import java.lang.Math;
  * @author condondeazucar
  *
  */
-public abstract class Entidad {
+public class Entidad {
 	private int posicion_X;
 	private int posicion_Y;
 	private char tipo;
@@ -20,7 +20,7 @@ public abstract class Entidad {
 		super();
 		this.posicion_X = posicion_X;
 		this.posicion_Y = posicion_Y;
-		this.tipo = tipo;
+		this.setTipo(tipo);
 		this.identificador = identificador;
 	}
 	
@@ -28,7 +28,7 @@ public abstract class Entidad {
 		super();
 		this.posicion_X = 0;
 		this.posicion_Y = 0;
-		this.tipo = '\0';
+		this.setTipo('\0');
 		this.identificador = -1;
 	}
 	
@@ -36,7 +36,7 @@ public abstract class Entidad {
 		super();
 		this.posicion_X = 0;
 		this.posicion_Y = 0;
-		this.tipo = tipo;
+		this.setTipo(tipo);
 		this.identificador = identificador;
 	}
 
@@ -68,7 +68,12 @@ public abstract class Entidad {
 	}
 
 	public void setTipo(char tipo) {
-		this.tipo = tipo;
+		if(tipo == 'P' || tipo == 'C') {
+			this.tipo = tipo;
+		}
+		else {
+			this.tipo = '\0';
+		}
 	}
 
 	// Identificador de la entidad
