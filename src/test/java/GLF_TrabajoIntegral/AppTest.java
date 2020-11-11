@@ -4,6 +4,9 @@
 package GLF_TrabajoIntegral;
 
 import org.junit.Test;
+
+import logical.App;
+
 import static org.junit.Assert.*;
 
 public class AppTest {
