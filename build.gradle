@@ -31,13 +31,15 @@ dependencies {
 
     // Use JUnit test framework
     testImplementation 'junit:junit:4.13'
+    testCompile "org.mockito:mockito-core:2.+"
     
+    // For servlet compatibilities
     providedCompile "javax.servlet:servlet-api:2.5"
 }
 
 application {
     // Define the main class for the application.
-    mainClassName = 'GLF_TrabajoIntegral.App'
+    mainClassName = 'GLF_TrabajoIntegral.Entidad'
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8

@@ -3,39 +3,37 @@
  */
 package logical;
 
-import java.lang.Math;
-
 /**
  * @author condondeazucar
  *
  */
 public class Entidad {
-	private int posicion_X;
-	private int posicion_Y;
+	private int posicionX;
+	private int posicionY;
 	private char tipo;
 	private int identificador;
 	
 	// CONSTRUCTORES
-	public Entidad(int posicion_X, int posicion_Y, char tipo, int identificador) {
+	public Entidad(int posicionX, int posicionY, char tipo, int identificador) {
 		super();
-		this.posicion_X = posicion_X;
-		this.posicion_Y = posicion_Y;
+		this.posicionX = posicionX;
+		this.posicionY = posicionY;
 		this.setTipo(tipo);
 		this.identificador = identificador;
 	}
 	
 	public Entidad() {
 		super();
-		this.posicion_X = 0;
-		this.posicion_Y = 0;
+		this.posicionX = 0;
+		this.posicionY = 0;
 		this.setTipo('\0');
 		this.identificador = -1;
 	}
 	
 	public Entidad(char tipo, int identificador) {
 		super();
-		this.posicion_X = 0;
-		this.posicion_Y = 0;
+		this.posicionX = 0;
+		this.posicionY = 0;
 		this.setTipo(tipo);
 		this.identificador = identificador;
 	}
@@ -45,21 +43,21 @@ public class Entidad {
 	 */
 	
 	// posicion en X
-	public int getPosicion_X() {
-		return posicion_X;
+	public int getPosicionX() {
+		return posicionX;
 	}
 
-	public void setPosicion_X(int posicion_X) {
-		this.posicion_X = posicion_X;
+	public void setPosicionX(int posicionX) {
+		this.posicionX = posicionX;
 	}
 
 	// posicion en Y
-	public int getPosicion_Y() {
-		return posicion_Y;
+	public int getPosicionY() {
+		return posicionY;
 	}
 
-	public void setPosicion_Y(int posicion_Y) {
-		this.posicion_Y = posicion_Y;
+	public void setPosicionY(int posicionY) {
+		this.posicionY = posicionY;
 	}
 
 	// Tipo de entidad
@@ -87,10 +85,10 @@ public class Entidad {
 	
 	// Distancia entre dos entidades utilizando teorema de pitagoras simple
 	public double distancia(Entidad other) {
-		int otherX = other.getPosicion_X();
-		int otherY = other.getPosicion_Y();
-		int thisX = this.posicion_X;
-		int thisY = this.posicion_Y;
-		return Math.sqrt(Math.pow(thisX - otherX, 2) + Math.pow(thisY - otherY, 2));
+		int otherX = other.getPosicionX();
+		int otherY = other.getPosicionY();
+		int thisX = this.posicionX;
+		int thisY = this.posicionY;
+		return Math.sqrt(Math.pow((double)thisX - otherX, 2) + Math.pow((double)thisY - otherY, 2));
 	}
 }

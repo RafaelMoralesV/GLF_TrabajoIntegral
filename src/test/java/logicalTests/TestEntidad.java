@@ -17,8 +17,8 @@ public class TestEntidad {
 	@Test
 	public void testEntidadIntIntCharInt() {
 		Entidad test = new Entidad(1, -2, 'X', 2);
-		assertEquals(1, test.getPosicion_X());
-		assertEquals(-2, test.getPosicion_Y());
+		assertEquals(1, test.getPosicionX());
+		assertEquals(-2, test.getPosicionY());
 		assertEquals('\0', test.getTipo());
 		assertEquals(2, test.getIdentificador());
 	}
@@ -26,8 +26,8 @@ public class TestEntidad {
 	@Test
 	public void testEntidad() {
 		Entidad test = new Entidad();
-		assertEquals(0, test.getPosicion_X());
-		assertEquals(0, test.getPosicion_Y());
+		assertEquals(0, test.getPosicionX());
+		assertEquals(0, test.getPosicionY());
 		assertEquals('\0', test.getTipo());
 		assertEquals(-1, test.getIdentificador());
 	}
@@ -35,32 +35,32 @@ public class TestEntidad {
 	@Test
 	public void testEntidadCharInt() {
 		Entidad test = new Entidad('P', 3);
-		assertEquals(0, test.getPosicion_X());
-		assertEquals(0, test.getPosicion_Y());
+		assertEquals(0, test.getPosicionX());
+		assertEquals(0, test.getPosicionY());
 		assertEquals('P', test.getTipo());
 		assertEquals(3, test.getIdentificador());
 	}
 
 	@Test
 	public void testGetPosicion_X() {
-		assertEquals(10, this.ent.getPosicion_X());
+		assertEquals(10, this.ent.getPosicionX());
 	}
 
 	@Test
 	public void testSetPosicion_X() {
-		this.ent.setPosicion_X(3);
-		assertEquals(3, this.ent.getPosicion_X());
+		this.ent.setPosicionX(3);
+		assertEquals(3, this.ent.getPosicionX());
 	}
 
 	@Test
 	public void testGetPosicion_Y() {
-		assertEquals(15, this.ent.getPosicion_Y());
+		assertEquals(15, this.ent.getPosicionY());
 	}
 
 	@Test
 	public void testSetPosicion_Y() {
-		this.ent.setPosicion_Y(3);
-		assertEquals(3, this.ent.getPosicion_Y());
+		this.ent.setPosicionY(3);
+		assertEquals(3, this.ent.getPosicionY());
 	}
 
 	@Test
