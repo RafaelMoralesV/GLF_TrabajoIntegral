@@ -1,18 +1,19 @@
 package servlets;
 
 import java.io.IOException;
-import java.net.UnknownHostException;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import java.util.logging.*;
 
 /**
  * Servlet implementation class HelloWorld
  */
 public class HelloWorld extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger LOGGER = Logger.getLogger(HelloWorld.class.getName());
 
 	
     public HelloWorld() {
@@ -25,16 +26,14 @@ public class HelloWorld extends HttpServlet {
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 		throws ServletException, IOException {
+    	LOGGER.info("Logger name: " + LOGGER.getName());
+    	LOGGER.warning("Puede generar IOException");
     	try {
     		response.getWriter().append("Served at: ").append(request.getContextPath());
     	}
-    	catch (UnknownHostException uhex) {
+    	catch (IOException e) {
     		// Hay que logear esto
-    		return;
-    	}
-    	catch (IOException ioe) {
-    		// Hay que logear esto
-    		return;
+    		LOGGER.log(Level.SEVERE, "Ocurrio una Excepcion: ", e);
     	}
 	}
 
@@ -43,18 +42,14 @@ public class HelloWorld extends HttpServlet {
 	 */
     @Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
+		LOGGER.warning("Llamando a doGet()");
+    	try {
 			doGet(request, response);
 		}
-		catch (IOException ioe) {
+		catch (IOException|ServletException e) {
     		// Hay que logear esto
-    		return;
+    		LOGGER.log(Level.SEVERE, "Ocurrio una Excepcion: ", e);
     	}
-		catch (ServletException se) {
-    		// Hay que logear esto
-    		return;
-    	}
-		
 	}
 
 }
