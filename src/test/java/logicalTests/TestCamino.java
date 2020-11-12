@@ -61,7 +61,7 @@ public class TestCamino {
 
 	@Test
 	public void testDistanciaTotal() {
-		assertEquals(36.56917, c.distanciaTotal(), 0.00001);
+		assertEquals(55.67414, c.distanciaTotal(), 0.00001);
 	}
 
 }

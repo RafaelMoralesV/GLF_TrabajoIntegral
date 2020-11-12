@@ -14,10 +14,31 @@ import java.util.logging.*;
 public class HelloWorld extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger LOGGER = Logger.getLogger(HelloWorld.class.getName());
-
 	
-    public HelloWorld() {
+    public HelloWorld(){
     	super();
+    	
+    	LogManager.getLogManager().reset();
+    	LOGGER.setLevel(Level.ALL);
+    	
+    	ConsoleHandler ch = new ConsoleHandler();
+    	ch.setLevel(Level.SEVERE);
+    	LOGGER.addHandler(ch);
+    	
+    	try {
+    		// GLF_TIG3_Servlet ==
+    		// Grafos y Lenguajes Formales
+    		// Trabajo Integral Grupo 3
+        	FileHandler fh = new FileHandler("GLF_TIG3_Servlet.log", true);
+        	fh.setFormatter(new SimpleFormatter());
+        	fh.setLevel(Level.FINE);
+        	LOGGER.addHandler(fh);
+    	}
+    	catch(Exception e) {
+    		LOGGER.log(Level.SEVERE, "No pudo inicializarse el Log en archivo", e);
+    	}
+    	
+    	LOGGER.severe("Inicializado servlet: " + LOGGER.getName());
     }
 
 	/**
@@ -26,8 +47,6 @@ public class HelloWorld extends HttpServlet {
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 		throws ServletException, IOException {
-    	LOGGER.info("Logger name: " + LOGGER.getName());
-    	LOGGER.warning("Puede generar IOException");
     	try {
     		response.getWriter().append("Served at: ").append(request.getContextPath());
     	}

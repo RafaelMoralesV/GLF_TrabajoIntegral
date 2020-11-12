@@ -44,7 +44,7 @@ public class Camino {
 		LinkedList<Entidad> lista = (LinkedList<Entidad>) cola;
 		
 		// Obtiene el primer valor de la lista
-		Entidad anterior = lista.poll();
+		Entidad anterior = new Entidad();
 		
 		double distancia = 0;
 		for(Entidad e : lista) {
