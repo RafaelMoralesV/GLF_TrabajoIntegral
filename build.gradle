@@ -15,6 +15,8 @@ plugins {
     id 'org.sonarqube' version '3.0'
     id 'jacoco'
     id 'war'
+    
+    id 'io.spring.dependency-management' version '1.0.1.RELEASE'
 }
 
 repositories {
@@ -22,6 +24,12 @@ repositories {
     // You can declare any Maven/Ivy/file repository here.
     jcenter()
 }
+
+dependencyManagement {
+  	imports {
+    	mavenBom 'org.apache.logging.log4j:log4j-bom:2.14.0'
+    }
+ }
 
 dependencies {
 	api 'org.apache.commons:commons-math3:3.6.1'
@@ -35,6 +43,10 @@ dependencies {
     
     // For servlet compatibilities
     providedCompile "javax.servlet:servlet-api:2.5"
+    
+    // Logger log4j
+    implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.0'
+  	implementation group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.0'
 }
 
 application {

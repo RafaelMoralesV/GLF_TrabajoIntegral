@@ -6,39 +6,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import java.util.logging.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 /**
  * Servlet implementation class HelloWorld
  */
 public class HelloWorld extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Logger LOGGER = Logger.getLogger(HelloWorld.class.getName());
+	protected static final Logger LOGGER = LogManager.getLogger(HelloWorld.class.getName());
 	
     public HelloWorld(){
     	super();
-    	
-    	LogManager.getLogManager().reset();
-    	LOGGER.setLevel(Level.ALL);
-    	
-    	ConsoleHandler ch = new ConsoleHandler();
-    	ch.setLevel(Level.SEVERE);
-    	LOGGER.addHandler(ch);
-    	
-    	try {
-    		// GLF_TIG3_Servlet ==
-    		// Grafos y Lenguajes Formales
-    		// Trabajo Integral Grupo 3
-        	FileHandler fh = new FileHandler("GLF_TIG3_Servlet.log", true);
-        	fh.setFormatter(new SimpleFormatter());
-        	fh.setLevel(Level.FINE);
-        	LOGGER.addHandler(fh);
-    	}
-    	catch(Exception e) {
-    		LOGGER.log(Level.SEVERE, "No pudo inicializarse el Log en archivo", e);
-    	}
-    	
-    	LOGGER.severe("Inicializado servlet: " + LOGGER.getName());
+    	LOGGER.trace("Trace");
+    	LOGGER.debug("Debug");
+    	LOGGER.info("Info");
+    	LOGGER.warn("Warn");
+    	LOGGER.error("Error");
+    	LOGGER.fatal("Fatal");
     }
 
 	/**
@@ -46,13 +32,11 @@ public class HelloWorld extends HttpServlet {
 	 */
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-		throws ServletException, IOException {
+	throws ServletException, IOException {
     	try {
     		response.getWriter().append("Served at: ").append(request.getContextPath());
     	}
     	catch (IOException e) {
-    		// Hay que logear esto
-    		LOGGER.log(Level.SEVERE, "Ocurrio una Excepcion: ", e);
     	}
 	}
 
@@ -61,13 +45,11 @@ public class HelloWorld extends HttpServlet {
 	 */
     @Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		LOGGER.warning("Llamando a doGet()");
     	try {
 			doGet(request, response);
 		}
 		catch (IOException|ServletException e) {
-    		// Hay que logear esto
-    		LOGGER.log(Level.SEVERE, "Ocurrio una Excepcion: ", e);
+
     	}
 	}
 
