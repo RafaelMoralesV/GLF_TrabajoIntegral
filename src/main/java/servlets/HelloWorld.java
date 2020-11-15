@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import logical.ScannerTxt;
+
 
 /**
  * Servlet implementation class HelloWorld
@@ -25,6 +27,7 @@ public class HelloWorld extends HttpServlet {
     	LOGGER.warn("Warn");
     	LOGGER.error("Error");
     	LOGGER.fatal("Fatal");
+    	
     }
 
 	/**

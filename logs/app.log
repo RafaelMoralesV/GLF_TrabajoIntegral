@@ -1,0 +1,6 @@
+20:42:32.444 [Test worker] TRACE servlets.HelloWorld - Trace
+20:42:32.455 [Test worker] DEBUG servlets.HelloWorld - Debug
+20:42:32.456 [Test worker] INFO  servlets.HelloWorld - Info
+20:42:32.456 [Test worker] WARN  servlets.HelloWorld - Warn
+20:42:32.456 [Test worker] ERROR servlets.HelloWorld - Error
+20:42:32.456 [Test worker] FATAL servlets.HelloWorld - Fatal
