@@ -19,12 +19,6 @@ public class HelloWorld extends HttpServlet {
 	
     public HelloWorld(){
     	super();
-    	LOGGER.trace("Trace");
-    	LOGGER.debug("Debug");
-    	LOGGER.info("Info");
-    	LOGGER.warn("Warn");
-    	LOGGER.error("Error");
-    	LOGGER.fatal("Fatal");
     }
 
 	/**
@@ -37,6 +31,7 @@ public class HelloWorld extends HttpServlet {
     		response.getWriter().append("Served at: ").append(request.getContextPath());
     	}
     	catch (IOException e) {
+    		LOGGER.error("Ha ocurrido un error: ", e);
     	}
 	}
 
@@ -49,7 +44,7 @@ public class HelloWorld extends HttpServlet {
 			doGet(request, response);
 		}
 		catch (IOException|ServletException e) {
-
+			LOGGER.error("Ha ocurrido un error al llamar doGet(): ", e);
     	}
 	}
 
