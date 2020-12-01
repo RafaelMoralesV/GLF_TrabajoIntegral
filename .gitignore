@@ -15,9 +15,13 @@ gradle-app.setting
 
 # Ignore Gradle build output directory
 build
+/bin/
 
 # Ignore guide photos for the project
 /utils/
-/bin/
-/.settings/
+
+# Ignore aux logs folder
 /logs/
+
+# Ignore eclipse settings
+/.settings/
