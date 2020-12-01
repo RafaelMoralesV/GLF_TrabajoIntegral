@@ -1,42 +1,42 @@
 package logical;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
 public class SyntaxChecker {
-	public static void Validar(File file) {
+	private SyntaxChecker() {
+		// Evita que la clase sea instanciada
+		throw new IllegalStateException("Utility class");
+	}
 
-		Logger LOGGER = LogManager.getLogger(SyntaxChecker.class.getName());
+	public static void validar(File file) {
 
-		String REGEX = "[P|C][;]\\d+[;]\\d+[,]\\d+";
-//		BufferedReader objReader = null;
+		final Logger logger = LogManager.getLogger(SyntaxChecker.class.getName());
+
+		final String REGEX = "[P|C][;]\\d+[;]\\d+[,]\\d+";
 		int cont = 0;
 
 		try {
-			List<String> lines = org.apache.commons.io.FileUtils.readLines(file);
+			List<String> lines = org.apache.commons.io.FileUtils.readLines(file, StandardCharsets.UTF_8.toString());
 
-			for (int i = 0; i < lines.size(); i++) {
+			int i = 0;
+			while (i < lines.size()) {
 				if (!lines.get(i).matches(REGEX)) {
-					LOGGER.trace("Removida la linea: " + cont);
-					LOGGER.trace(lines.get(i));
+					logger.trace("Removida la linea: {}", cont);
+					logger.trace(lines.get(i));
 					lines.remove(i--);
 				}
 				cont++;
+				i++;
 			}
 			org.apache.commons.io.FileUtils.writeLines(file, lines);
 
-		} catch (IOException e) {
-			LOGGER.warn(e);
 		} catch (Exception e) {
-			LOGGER.warn(e);
+			logger.warn(e);
 		}
-	}
-
-	public static void main(String[] args) {
-		// Does nothing
-		return;
 	}
 }

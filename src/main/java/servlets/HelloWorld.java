@@ -31,7 +31,12 @@ public class HelloWorld extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.sendError(405, "Esta URL solo deberia ser utilizada para postear archivos");
+		try{
+			response.sendError(405, "Esta URL solo deberia ser utilizada para postear archivos");
+		} catch(Exception e) {
+			LOGGER.error("Ha ocurrido un error en doGet()");
+			LOGGER.error(e);
+		}
 	}
 	
 	@Override
@@ -47,19 +52,31 @@ public class HelloWorld extends HttpServlet {
 				path = this.getServletContext().getRealPath("/");
 				f = new File(path + item.getName());
 				item.write(f);
-				SyntaxChecker.Validar(f);
+				SyntaxChecker.validar(f);
 			}
 		} catch (FileUploadException e) {
 			String error = "Se ha intentado parsear un archivo desde el objeto request, sin exito.";
 			LOGGER.warn(error);
 			LOGGER.warn(e);
-			response.sendError(500, error);
+			try {
+				response.sendError(500, error);
+			} catch (Exception exc) {
+				LOGGER.error("No se ha podido enviar el codigo de error");
+				LOGGER.error(exc);
+			}
 		} catch (Exception e) {
 			String error = "No se ha podido acceder al archivo. Revise que efectivamente se haya seleccionado y subido un archivo.";
 			LOGGER.warn(error);
 			LOGGER.warn(path);
-			LOGGER.warn(f.getName());
-			response.sendError(400, error);
+			if(f != null) {
+				LOGGER.warn(f.getName());
+			}
+			try {
+				response.sendError(400, error);
+			} catch (Exception exc) {
+				LOGGER.error("No se ha podido enviar el codigo de error");
+				LOGGER.error(exc);
+			}
 		}
 	}
 
