@@ -15,6 +15,9 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import org.apache.logging.log4j.Logger;
+
+import logical.SyntaxChecker;
+
 import org.apache.logging.log4j.LogManager;
 
 /**
@@ -34,13 +37,17 @@ public class HelloWorld extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ServletFileUpload sfu = new ServletFileUpload(new DiskFileItemFactory());
+		String path = null;
+		File f = null;
 		try {
 			// Parsear lista de archivos recibidos
 			// Solo se espera 1, pero se guardan todos los necesarios
 			List<FileItem> files = sfu.parseRequest(request);
 			for(FileItem item : files) {
-				String path = this.getServletContext().getRealPath("/") + item.getName();
-				item.write(new File(path));
+				path = this.getServletContext().getRealPath("/");
+				f = new File(path + item.getName());
+				item.write(f);
+				SyntaxChecker.Validar(f);
 			}
 		} catch (FileUploadException e) {
 			String error = "Se ha intentado parsear un archivo desde el objeto request, sin exito.";
@@ -50,6 +57,8 @@ public class HelloWorld extends HttpServlet {
 		} catch (Exception e) {
 			String error = "No se ha podido acceder al archivo. Revise que efectivamente se haya seleccionado y subido un archivo.";
 			LOGGER.warn(error);
+			LOGGER.warn(path);
+			LOGGER.warn(f.getName());
 			response.sendError(400, error);
 		}
 	}
