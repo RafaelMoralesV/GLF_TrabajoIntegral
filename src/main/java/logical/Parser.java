@@ -9,6 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Parser {
+	
+	private Parser() {
+		// Evita que la clase sea instanciada
+		throw new IllegalStateException("Utility class");
+	}
+	
+	// A partir de el archivo target.txt, retorna una lista de entidades
 	public static List<Entidad> parseFile(File target) 
 			throws IOException, FileNotFoundException{
 		List<Entidad> lista = new ArrayList<>();

@@ -14,6 +14,7 @@ public class Camino {
 	}
 	
 	public Camino(List<Entidad> lista) {
+		// Verifica que el primer elemento es un centro de venta
 		if(((LinkedList<Entidad>) lista).peekFirst().getTipo() == 'C') {
 			cola = (LinkedList<Entidad>)lista;
 			return;

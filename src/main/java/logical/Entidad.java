@@ -8,18 +8,28 @@ package logical;
  *
  */
 public class Entidad {
-	@Override
-	public String toString() {
-		return "Entidad en (" + posicionX + ", " + posicionY + "): tipo = " + tipo + ", identificador = "
-				+ identificador;
-	}
-
+	
+	/*
+	 * VARIABLES
+	 */
+	
 	private int posicionX;
 	private int posicionY;
 	private char tipo;
 	private int identificador;
 	
-	// CONSTRUCTORES
+	@Override
+	public String toString() {
+		// Sobrecarga metodo toString()
+		return "Entidad en (" + posicionX + ", " + posicionY + "): tipo = " + tipo + ", identificador = "
+				+ identificador;
+	}
+
+	
+	
+	/*
+	 * CONSTRUCTORES
+	 */
 	public Entidad(int posicionX, int posicionY, char tipo, int identificador) {
 		super();
 		this.posicionX = posicionX;

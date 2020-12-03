@@ -18,17 +18,18 @@ import org.apache.logging.log4j.Logger;
 public class Enlistador extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected static final Logger LOGGER = LogManager.getLogger(HelloWorld.class.getName());  
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
+	
     public Enlistador() {
         super();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/*
+		 * Este servlet actualmente retorna una version string de todas las entidades que son cargables desde
+		 * el archivo target.txt
+		 * TODO enviar la respuesta en formato JSON.
+		 */
 		try {
 			String path = this.getServletContext().getRealPath("/");
 			File f = new File(path + "target.txt");
@@ -37,7 +38,6 @@ public class Enlistador extends HttpServlet {
 				response.getWriter().append(e.toString()).append("\n\n");
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			LOGGER.error("No se pudo abrir el archivo.");
 			LOGGER.error(e);
 			
@@ -51,10 +51,12 @@ public class Enlistador extends HttpServlet {
 		}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/*
+		 * Intenta enviar un status de error en caso de que se intente acceder al metodo post
+		 * de este servlet.
+		 */
+		
 		try{
 			response.sendError(405, "Esta URL solo deberia ser utilizada para obtener la lista de puntos.");
 		} catch(Exception e) {

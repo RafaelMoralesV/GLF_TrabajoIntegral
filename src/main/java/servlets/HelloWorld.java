@@ -22,7 +22,7 @@ import logical.SyntaxChecker;
 import org.apache.logging.log4j.LogManager;
 
 /**
- * Servlet implementation class HelloWorld
+ * TODO cambiar este codigo a una nueva clase con mucho mas sentido.
  */
 
 public class HelloWorld extends HttpServlet {
@@ -32,6 +32,9 @@ public class HelloWorld extends HttpServlet {
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/*
+		 * Evita que haya comunicacion con este servlet en un metodo get.
+		 */
 		try{
 			response.sendError(405, "Esta URL solo deberia ser utilizada para postear archivos");
 		} catch(Exception e) {
@@ -42,12 +45,17 @@ public class HelloWorld extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		/*
+		 * Este servlet recibe un archivo del usuario.
+		 * Este archivo es revisado con un REGEX y subido al servidor donde puede ser accedido por otros
+		 * servlets.
+		 */
 		ServletFileUpload sfu = new ServletFileUpload(new DiskFileItemFactory());
 		String path = null;
 		File f = null;
 		try {
 			// Parsear lista de archivos recibidos
-			// Solo se espera 1, pero se guardan todos los necesarios
+			// Solo se espera 1, pero se agrega toda la informacion obtenida a 'target.txt'
 			List<FileItem> files = sfu.parseRequest(request);
 			for(FileItem item : files) {
 				path = this.getServletContext().getRealPath("/");
@@ -59,6 +67,7 @@ public class HelloWorld extends HttpServlet {
 			}
 			
 		} catch (FileUploadException e) {
+			// En caso de que no se pueda recibir el archivo, se envia un codigo de error al usuario.
 			String error = "Se ha intentado parsear un archivo desde el objeto request, sin exito.";
 			LOGGER.warn(error);
 			LOGGER.warn(e);
@@ -82,6 +91,8 @@ public class HelloWorld extends HttpServlet {
 				LOGGER.error(exc);
 			}
 		}
+		// Se envia al usuario a la pagina de inicio
+		// TODO este redirect debe mandar a una pagina con mas sentido.
 		response.sendRedirect(this.getServletContext().getContextPath());
 	}
 
