@@ -17,7 +17,13 @@ public class Parser {
 		
 		String st;
 		while((st = br.readLine()) != null) {
-			System.out.println(st);
+			String[] arr = st.split("[;|,]", 4);
+			lista.add(
+					new Entidad(
+							Integer.parseInt(arr[2]), Integer.parseInt(arr[3]),
+							arr[0].charAt(0), Integer.parseInt(arr[1])
+							)
+					);
 		}
 		br.close();
 		return lista;

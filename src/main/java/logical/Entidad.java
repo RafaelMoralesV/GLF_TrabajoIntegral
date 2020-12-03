@@ -8,6 +8,12 @@ package logical;
  *
  */
 public class Entidad {
+	@Override
+	public String toString() {
+		return "Entidad en (" + posicionX + ", " + posicionY + "): tipo = " + tipo + ", identificador = "
+				+ identificador;
+	}
+
 	private int posicionX;
 	private int posicionY;
 	private char tipo;
