@@ -14,21 +14,18 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import logical.SyntaxChecker;
 
-import org.apache.logging.log4j.LogManager;
-
 /**
- * TODO cambiar este codigo a una nueva clase con mucho mas sentido.
+ * Servlet implementation class FileUploader
  */
-
-public class HelloWorld extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+public class FileUploader extends HttpServlet {
+private static final long serialVersionUID = 1L;
 	
-	protected static final Logger LOGGER = LogManager.getLogger(HelloWorld.class.getName());
+	protected static final Logger LOGGER = LogManager.getLogger(FileUploader.class.getName());
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

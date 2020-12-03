@@ -17,7 +17,7 @@ import org.apache.logging.log4j.Logger;
  */
 public class Enlistador extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	protected static final Logger LOGGER = LogManager.getLogger(HelloWorld.class.getName());  
+	protected static final Logger LOGGER = LogManager.getLogger(Enlistador.class.getName());  
 
 	
     public Enlistador() {

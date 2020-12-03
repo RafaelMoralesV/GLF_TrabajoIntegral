@@ -2,32 +2,26 @@
 <web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 	<display-name>GLF_TrabajoIntegral</display-name>
 	<servlet>
-		<description>
-		</description>
-		<display-name>HelloWorld</display-name>
-		<servlet-name>HelloWorld</servlet-name>
-		<servlet-class>servlets.HelloWorld</servlet-class>
-	</servlet>
-	<servlet>
-		<description>
-		</description>
+		<description>Envia una lista de Entidades en formato JSON</description>
 		<display-name>Enlistador</display-name>
 		<servlet-name>Enlistador</servlet-name>
 		<servlet-class>servlets.Enlistador</servlet-class>
 	</servlet>
-	<servlet-mapping>
-		<servlet-name>HelloWorld</servlet-name>
-		<url-pattern>/HelloWorld</url-pattern>
-	</servlet-mapping>
+	<servlet>
+		<description>Recibe un archivo del usuario</description>
+		<display-name>FileUploader</display-name>
+		<servlet-name>FileUploader</servlet-name>
+		<servlet-class>servlets.FileUploader</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Enlistador</servlet-name>
 		<url-pattern>/Enlistador</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>FileUploader</servlet-name>
+		<url-pattern>/FileUploader</url-pattern>
+	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
-	<context-param>
-    	<param-name>tempfile.dir</param-name>
-    	<param-value>tmpfiles</param-value>
-  </context-param>
 </web-app>
