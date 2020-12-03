@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
@@ -50,10 +51,13 @@ public class HelloWorld extends HttpServlet {
 			List<FileItem> files = sfu.parseRequest(request);
 			for(FileItem item : files) {
 				path = this.getServletContext().getRealPath("/");
-				f = new File(path + item.getName());
-				item.write(f);
-				SyntaxChecker.validar(f);
+				f = new File(path + "target.txt");
+				FileWriter fw = new FileWriter(f, true);
+				fw.append(item.getString());
+				fw.close();
+				SyntaxChecker.format(f);
 			}
+			
 		} catch (FileUploadException e) {
 			String error = "Se ha intentado parsear un archivo desde el objeto request, sin exito.";
 			LOGGER.warn(error);
@@ -78,6 +82,7 @@ public class HelloWorld extends HttpServlet {
 				LOGGER.error(exc);
 			}
 		}
+		response.sendRedirect(this.getServletContext().getContextPath());
 	}
 
 }

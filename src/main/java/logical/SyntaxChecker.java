@@ -2,6 +2,7 @@ package logical;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.LinkedHashSet;
 import java.util.List;
 
 import org.apache.logging.log4j.Logger;
@@ -13,7 +14,7 @@ public class SyntaxChecker {
 		throw new IllegalStateException("Utility class");
 	}
 
-	public static void validar(File file) {
+	public static void format(File file) {
 
 		final Logger logger = LogManager.getLogger(SyntaxChecker.class.getName());
 
@@ -23,6 +24,7 @@ public class SyntaxChecker {
 		try {
 			List<String> lines = org.apache.commons.io.FileUtils.readLines(file, StandardCharsets.UTF_8.toString());
 
+			// Elimina lineas incorrectas
 			int i = 0;
 			while (i < lines.size()) {
 				if (!lines.get(i).matches(REGEX)) {
@@ -33,7 +35,13 @@ public class SyntaxChecker {
 				cont++;
 				i++;
 			}
-			org.apache.commons.io.FileUtils.writeLines(file, lines);
+			
+			// Elimina duplicados
+			LinkedHashSet<String> lhs = new LinkedHashSet<>(lines);
+			
+			logger.trace("Se han eliminado {} lineas duplicadas", lines.size() - lhs.size());
+			
+			org.apache.commons.io.FileUtils.writeLines(file, lhs);
 
 		} catch (Exception e) {
 			logger.warn(e);
