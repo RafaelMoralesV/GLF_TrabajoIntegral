@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.*;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,15 +30,25 @@ public class Enlistador extends HttpServlet {
 		/*
 		 * Este servlet actualmente retorna una version string de todas las entidades que son cargables desde
 		 * el archivo target.txt
-		 * TODO enviar la respuesta en formato JSON.
 		 */
 		try {
 			String path = this.getServletContext().getRealPath("/");
 			File f = new File(path + "target.txt");
 			List<logical.Entidad> lista = logical.Parser.parseFile(f);
+			
+			// Preparando respuesta JSON
+			response.setContentType("application/json");
+			JSONObject res = new JSONObject();
+			int i = 0;
 			for(logical.Entidad e : lista) {
-				response.getWriter().append(e.toString()).append("\n\n");
+				JSONObject json = new JSONObject(); 
+				json.put("Tipo", e.getTipo());
+				json.put("ID", e.getIdentificador());
+				json.put("posX", e.getPosicionX());
+				json.put("posY", e.getPosicionY());
+				res.put(String.valueOf(i++), json);
 			}
+			response.getWriter().append(res.toString());
 		} catch (IOException e) {
 			LOGGER.error("No se pudo abrir el archivo.");
 			LOGGER.error(e);

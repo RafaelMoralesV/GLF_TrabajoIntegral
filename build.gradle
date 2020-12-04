@@ -37,6 +37,10 @@ dependencies {
 	implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
 	
 	implementation group: 'commons-io', name: 'commons-io', version: '2.6'
+	
+	// https://mvnrepository.com/artifact/org.json/json
+	implementation group: 'org.json', name: 'json', version: '20201115'
+	
 
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:29.0-jre'
