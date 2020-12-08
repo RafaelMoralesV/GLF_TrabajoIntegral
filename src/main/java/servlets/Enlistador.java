@@ -38,15 +38,15 @@ public class Enlistador extends HttpServlet {
 			
 			// Preparando respuesta JSON
 			response.setContentType("application/json");
-			JSONObject res = new JSONObject();
-			int i = 0;
+			//JSONObject res = new JSONObject();
+			JSONArray res = new JSONArray();
 			for(logical.Entidad e : lista) {
 				JSONObject json = new JSONObject(); 
-				json.put("Tipo", e.getTipo());
+				json.put("Tipo", String.valueOf(e.getTipo()));
 				json.put("ID", e.getIdentificador());
 				json.put("posX", e.getPosicionX());
 				json.put("posY", e.getPosicionY());
-				res.put(String.valueOf(i++), json);
+				res.put(json);
 			}
 			response.getWriter().append(res.toString());
 		} catch (IOException e) {
