@@ -1,0 +1,39 @@
+#titulo {
+	background-color: lightblue;
+	color: black;
+	padding: 40px;
+	text-align: center;
+}
+
+.form {
+	text-align: center;
+	padding: 20px;
+	display: block;
+	margin: auto;
+}
+
+.resultado {
+	text-align: center;
+	padding: 20px;
+	display: inline-block;
+	margin: auto;
+	background-color: #ffffff;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	border: 10px double lightblue;
+	border-radius: 10px;
+}
+
+.resultado__output {
+	text-align: center;
+	display: inline-block;
+	margin: auto;
+	
+}
+
+#somebutton {
+	display: block;
+	margin: auto;
+	margin-bottom: 20px;
+}
