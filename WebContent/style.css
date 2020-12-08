@@ -31,9 +31,37 @@
 	margin: auto;
 	
 }
+.resultado1 {
+	text-align: center;
+	padding: 50px 20px;
+	display: inline-block;
+	background-color: #ffffff;
+	position: absolute;
+	left: 25%;
+	transform: translateX(-50%);
+	border: 10px double lightblue;
+	border-radius: 10px;
+	margin-top: 25px;
+}
+
 
 #somebutton {
 	display: block;
 	margin: auto;
 	margin-bottom: 20px;
 }
+.form-group  {
+	text-align: center;
+	padding: 20px;
+	display: inline-block;
+	margin: auto;
+	margin-top: 25px;
+	background-color: lightblue;
+	position: absolute;
+	left: 70%;
+	transform: translateX(-50%);
+	border: 10px double white;
+	border-radius: 10px;
+}
+	
+

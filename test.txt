@@ -5,4 +5,3 @@ c;3;-1,10
 X;4;a,10
 C;5;1,1
 piroca
-test 1 hola
