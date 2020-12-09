@@ -50,8 +50,11 @@
 	margin: auto;
 	margin-bottom: 20px;
 }
-.form-group  {
+.form-group {
+	
 	text-align: center;
+	width: 264px;
+	height: 229px;
 	padding: 20px;
 	display: inline-block;
 	margin: auto;
@@ -63,5 +66,7 @@
 	border: 10px double white;
 	border-radius: 10px;
 }
+
+
 	
 

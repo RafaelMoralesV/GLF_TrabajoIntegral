@@ -16,18 +16,25 @@
 <body>
 	<div class="resultado1">
 		<h6>Revisar los datos ingresados</h6>
-		<button id="somebutton">Show</button>
+		<button class="btn btn-secondary btn-xs mx-auto text-center" id="somebutton">Show</button>
 		<div class="resultado__output" id="somediv"></div>
 	</div>
-	<div class="form-group row text-center ">
-		<h6>Ingrese el numero de Camiones</h6>
-		<div class="col-xs-2">
-		<br><br>
-			<input class="form-control " type="number" value="0"
-				id="example-number-input">
-		</div>
-	</div>
-	
+	<form action="registroCamiones" method="post">
+		<div class="form-group text-center">
+			<div class="text-center mx-auto">
+				<h6>Ingrese el numero de Camiones</h6>
+			</div>
 
+			<div class="col-xs-2 h-50 text-center py-3">
+				<input class="form-control mx-auto text-center" type="number"
+					value="0" id="cantidadCamiones">
+			</div>
+			<div class="h-50">
+				<input class="btn btn-secondary btn-xs mx-auto text-center "
+					type="submit" value="Aceptar">
+			</div>
+
+		</div>
+	</form>
 </body>
 </html>
