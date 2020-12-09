@@ -4,8 +4,11 @@
 <meta charset="UTF-8">
 <title>Empresa D - Generador de Hojas de Ruta</title>
 <link rel="stylesheet" href="style.css">
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 $(document).on("click", "#somebutton", function() {  // When HTML DOM "click" event is invoked on element with ID "somebutton", execute the following function...
     $.get("Enlistador", function(responseJson) {    // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
@@ -28,6 +31,6 @@ $(document).on("click", "#somebutton", function() {  // When HTML DOM "click" ev
 	</form>
 
 	<button id="somebutton">press here</button>
-	        <div id="somediv"></div>
+	<div id="somediv"></div>
 </body>
 </html>
