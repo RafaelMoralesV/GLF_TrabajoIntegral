@@ -8,3 +8,22 @@ $(document).on("click", "#somebutton", function() {  // When HTML DOM "click" ev
         });
     });
 });
+
+//$(document).on("click", "#somebutton", ()=>{
+//	fetch('Enlistador')
+//		.then((response) => {return response.json();})
+//		.then((data) => {
+//			for(var i = 0; i < data.length; i++){
+//				const obj = data[i];
+//				var mainContainer = document.getElementById("detail");
+//				if(obj.Tipo == "P"){
+//					var header = document.createElement("div");
+//					header.innerHTML = '<div class="font-italic">(' + obj.Tipo+ ') </div>'
+//										+ '<div>ID: ' + obj.ID + '</div>'
+//										+ '<div>(' + obj.posX + ', ' + obj.posY + ")</div>";
+//					mainContainer.appendChild(header);
+//				}
+//			}
+//		})
+//		.catch((error) => { console.log(error); });
+//});

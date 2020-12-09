@@ -16,6 +16,13 @@
 		<servlet-name>FileUploader</servlet-name>
 		<servlet-class>servlets.FileUploader</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>registroCamiones</display-name>
+		<servlet-name>registroCamiones</servlet-name>
+		<servlet-class>servlets.registroCamiones</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Enlistador</servlet-name>
 		<url-pattern>/Enlistador</url-pattern>
@@ -23,6 +30,10 @@
 	<servlet-mapping>
 		<servlet-name>FileUploader</servlet-name>
 		<url-pattern>/FileUploader</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>registroCamiones</servlet-name>
+		<url-pattern>/registroCamiones</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
