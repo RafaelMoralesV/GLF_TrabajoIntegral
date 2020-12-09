@@ -29,29 +29,30 @@
 	text-align: center;
 	display: inline-block;
 	margin: auto;
-	
 }
+
 .resultado1 {
 	text-align: center;
-	padding: 50px 20px;
+	padding: 20px;
+	width: 500px;
 	display: inline-block;
 	background-color: #ffffff;
 	position: absolute;
-	left: 25%;
+	left: 50%;
 	transform: translateX(-50%);
 	border: 10px double lightblue;
 	border-radius: 10px;
-	margin-top: 25px;
+	margin-top: 50px;
+	
 }
-
 
 #somebutton {
 	display: block;
 	margin: auto;
 	margin-bottom: 20px;
 }
+
 .form-group {
-	
 	text-align: center;
 	width: 264px;
 	height: 229px;
@@ -67,6 +68,10 @@
 	border-radius: 10px;
 }
 
-
-	
-
+#siguiente {
+	display: inline-block;
+	position: relative;
+	margin: auto;
+	left: 85%;
+	top: 200px;
+}

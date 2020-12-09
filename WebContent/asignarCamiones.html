@@ -13,28 +13,50 @@
 <script type="text/javascript" src="JS/utils.js"></script>
 </head>
 
-<body>
-	<div class="resultado1">
-		<h6>Revisar los datos ingresados</h6>
-		<button class="btn btn-secondary btn-xs mx-auto text-center" id="somebutton">Show</button>
-		<div class="resultado__output" id="somediv"></div>
-	</div>
-	<form action="registroCamiones" method="post">
-		<div class="form-group text-center">
-			<div class="text-center mx-auto">
-				<h6>Ingrese el numero de Camiones</h6>
-			</div>
-
-			<div class="col-xs-2 h-50 text-center py-3">
-				<input class="form-control mx-auto text-center" type="number"
-					value="0" id="cantidadCamiones">
-			</div>
-			<div class="h-50">
-				<input class="btn btn-secondary btn-xs mx-auto text-center "
-					type="submit" value="Aceptar">
-			</div>
-
+<body >
+	<div class= "m-auto">
+		<h1 id="titulo">Registro coordenadas GPS</h1>
+		<div class="resultado1">
+			<h6>Asignar Camiones de cada Punto de Venta</h6>
+			<button class="btn btn-secondary btn-xs mx-auto text-center d-block m-3 "
+				id="somebutton1">Show</button>
+				<form action= "registroCamiones" method="post">
+			<div class="resultado__output" id="detail"></div>
+			<input
+				class="btn btn-secondary btn-xs mx-auto text-center d-block m-3  " type="submit"
+				value="Upload">
+			
+			</form>
+			<IMG SRC="tenor.gif">
 		</div>
-	</form>
+
+	</div>
+
+
+
+
+
+
+
+	<!-- 	<form action="registroCamiones" method="post"> -->
+	<!-- 		<div class="form-group text-center"> -->
+	<!-- 			<div class="text-center mx-auto"> -->
+	<!-- 				<h6>Ingrese el numero de Camiones</h6> -->
+	<!-- 			</div> -->
+
+	<!-- 			<div class="col-xs-2 h-50 text-center py-3"> -->
+	<!-- 				<input class="form-control mx-auto text-center" type="number" -->
+	<!-- 					value="0" id="cantidadCamiones"> -->
+	<!-- 			</div> -->
+	<!-- 			<div class="h-50"> -->
+	<!-- 				<input class="btn btn-secondary btn-xs mx-auto text-center " -->
+	<!-- 					type="submit" value="Aceptar" id="somebutton2"> -->
+	<!-- 			</div> -->
+
+
+	<!-- 		</div> -->
+	<!-- 	</form> -->
+	<a id="siguiente" href="asignarCamiones.html"><button
+			class="btn btn-secondary">Siguiente</button></a>
 </body>
 </html>
