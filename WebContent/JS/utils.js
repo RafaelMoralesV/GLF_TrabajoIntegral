@@ -18,11 +18,11 @@ $(document).one("click", "#somebutton1", () => {
 				var mainContainer = document.getElementById("detail");
 				if (obj.Tipo == "P") {
 					var header = document.createElement("div");
-					header.innerHTML = '<div class= "font-italic"> (' + obj.Tipo +') ID: ' + obj.ID + ' Pos: (' + obj.posX + ', ' + obj.posY + '): ' + '<input id="number" type="number" value="0"></div>' 
+					header.innerHTML = '<div class= "font-italic"> (' + obj.Tipo +') ID: ' + obj.ID + ' Pos: (' + obj.posX + ', ' + obj.posY + '): ' 
+										+ '<input id="' + obj.ID + '" type="number" value="0"></div>' 
 					mainContainer.appendChild(header);
 				}
 			}
 		})
 		.catch((error) => { console.log(error); });
 });
-
