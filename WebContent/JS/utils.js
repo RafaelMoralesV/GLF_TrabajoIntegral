@@ -26,3 +26,6 @@ $(document).one("click", "#somebutton1", () => {
 		.catch((error) => { console.log(error); });
 });
 
+
+
+
