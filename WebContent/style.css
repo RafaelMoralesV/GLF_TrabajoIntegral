@@ -45,6 +45,20 @@
 	margin-top: 50px;
 	
 }
+.resultado2 {
+	text-align: center;
+	padding: 20px;
+	width: 700px;
+	display: inline-block;
+	background-color: #ffffff;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	border: 10px double lightblue;
+	border-radius: 10px;
+	margin-top: 50px;
+	
+}
 
 #somebutton {
 	display: block;

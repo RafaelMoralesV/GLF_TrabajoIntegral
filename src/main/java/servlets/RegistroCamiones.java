@@ -1,21 +1,27 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.Enumeration;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * Servlet implementation class registroCamiones
  */
-public class registroCamiones extends HttpServlet {
+public class RegistroCamiones extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	protected static final Logger LOGGER = LogManager.getLogger(RegistroCamiones.class.getName());
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public registroCamiones() {
+    public RegistroCamiones() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -25,7 +31,6 @@ public class registroCamiones extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO postear desde un archivo
-		response.setContentType("text/plain");
 		response.getWriter().append("10");
 	}
 
@@ -34,6 +39,14 @@ public class registroCamiones extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Agregar lo que se postee a un archivo
+		Enumeration<?> e = request.getParameterNames();
+		while(e.hasMoreElements()) {
+			String name = (String) e.nextElement();
+			Object obj = request.getParameter(name);
+			
+			LOGGER.info(name);
+			LOGGER.info(obj.toString());
+		}
 		response.sendError(501, "Aun no implementado");
 	}
 

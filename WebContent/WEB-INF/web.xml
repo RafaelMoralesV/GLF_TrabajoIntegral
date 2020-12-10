@@ -21,7 +21,7 @@
 		</description>
 		<display-name>registroCamiones</display-name>
 		<servlet-name>registroCamiones</servlet-name>
-		<servlet-class>servlets.registroCamiones</servlet-class>
+		<servlet-class>servlets.RegistroCamiones</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Enlistador</servlet-name>
