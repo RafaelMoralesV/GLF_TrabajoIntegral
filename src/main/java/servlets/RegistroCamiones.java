@@ -41,11 +41,9 @@ public class RegistroCamiones extends HttpServlet {
 		// TODO Agregar lo que se postee a un archivo
 		Enumeration<?> e = request.getParameterNames();
 		while(e.hasMoreElements()) {
-			String name = (String) e.nextElement();
-			Object obj = request.getParameter(name);
-			
-			LOGGER.info(name);
-			LOGGER.info(obj.toString());
+			String id = (String) e.nextElement();
+			int obj = Integer.parseInt(request.getParameter(id));
+			LOGGER.info("(ID): {}\t(VALUE): {}", id, obj);
 		}
 		response.sendError(501, "Aun no implementado");
 	}
