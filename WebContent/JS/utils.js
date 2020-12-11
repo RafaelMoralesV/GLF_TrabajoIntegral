@@ -19,7 +19,7 @@ $(document).one("click", "#somebutton1", () => {
 				if (obj.Tipo == "C") {
 					var header = document.createElement("div");
 					header.innerHTML = '<div class= "font-italic"> (' + obj.Tipo + ') ID: ' + obj.ID + ' Pos: (' + obj.posX + ', ' + obj.posY + '): '
-						+ '<input name="' + obj.ID + '" type="number" value="0"></div>'
+						+ '<input class="text-center d-flex justify-content-between mt-2 mb-4" name="' + obj.ID + '" type="number" min="0" value="0"></div>'
 					mainContainer.appendChild(header);
 				}
 			}
@@ -41,15 +41,19 @@ $(document).one("click", "#somebutton2", () => {
 						var mainContainer = document.getElementById("detail");
 						if (obj1.Tipo == "C") {
 							var opt = document.createElement('OPTION');
-							opt.setAttribute('name', obj.ID);
+							opt.setAttribute('name','selector' + obj.ID);
 							opt.innerHTML = '(' + obj1.Tipo + ') ID: ' + obj1.ID + ' Pos: (' + obj1.posX + ', ' + obj1.posY + ')';
 							sel.appendChild(opt);
 						}
 					}
 					var header = document.createElement("div");
-					header.innerHTML = '<div class= "font-italic"> (' + obj.Tipo + ') ID: ' + obj.ID + ' Pos: (' + obj.posX + ', ' + obj.posY + ')</div>'
+					var cantidad = document.createElement("div");
+					header.innerHTML = '<div class= "h5 mb-3 mt-5 resultado__output"><u> (' + obj.Tipo + ') ID: ' + obj.ID + ' Pos: (' + obj.posX + ', ' + obj.posY + ')</u></div><div class="mb-3 d-flex align-items-end justify-content-center">Punto de distribucion asociado</div>'
+					cantidad.innerHTML = '<div class= "text-center my-2">Cantidad de productos para este Punto de Venta <br><input class="my-3 text-center" name="' + obj.ID + '" type="number" min="0" value="0"></div>'
 					mainContainer.appendChild(header);
 					mainContainer.appendChild(sel);
+					mainContainer.appendChild(cantidad);
+					
 					
 				}
 			}
