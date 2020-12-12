@@ -3,82 +3,68 @@ package logical;
 import java.util.*;
 
 public class Camino {
-	protected Queue<Entidad> cola;
+	protected CentroDistribucion inicio;
+	protected LinkedList<PuntoDeVenta> cola;
+	
+	protected int cargaActual = 0;
 	
 	/*
 	 * CONSTRUCTORES
 	 */
-	public Camino(Entidad inicio) {
-		this.cola = new LinkedList<>();
-		if(inicio.getTipo() == 'C') {
-			cola.offer(inicio);
-		}
-	}
-	public Camino(List<Entidad> lista) {
-		// Verifica que el primer elemento es un centro de venta
-		if(((LinkedList<Entidad>) lista).peekFirst().getTipo() == 'C') {
-			cola = (LinkedList<Entidad>)lista;
-			return;
-		}
-		cola = new LinkedList<>();
+	public Camino(CentroDistribucion inicio) {
+		this.inicio = inicio;
 	}
 
 	/* 
 	 * GETTER
 	 */
-	public Queue<Entidad> getCamino() {
+	public Queue<PuntoDeVenta> getCamino() {
 		return cola;
 	}
 	
 	/*
 	 * METODOS LOGICOS
 	 */
-	public void agregarEntidad(Entidad e) {
-		LinkedList<Entidad> mejorCamino = new LinkedList<>();
-		double distancia = Double.MAX_VALUE;
-		for(int i = 0; i < cola.size(); i++) {
-			LinkedList<Entidad> aux = (LinkedList<Entidad>)cola;
-			aux.add(i, e);
-			if(Camino.distanciaTotal((List<Entidad>)aux) < distancia) {
-				mejorCamino = aux;
-				distancia = Camino.distanciaTotal((List<Entidad>)aux);
+	public void agregarEntidad(PuntoDeVenta e) {
+		LinkedList<PuntoDeVenta> estadoInicial = this.cola;
+		
+		LinkedList<PuntoDeVenta> mejorCamino = this.cola;
+		double mejorDistancia = Double.MAX_VALUE;
+		
+		for(int i = 0; i < estadoInicial.size(); i++) {
+			this.cola = estadoInicial;
+			this.cola.add(i, e);
+			double aux = this.distanciaTotal();
+			if(aux < mejorDistancia) {
+				mejorDistancia = aux;
+				mejorCamino = this.cola;
 			}
 		}
-		cola = mejorCamino;
+		this.cola = mejorCamino;
+		this.cargaActual += e.getNeededProduct();
 	}
-	public void eliminarEntidad(int identificador) {
-		for(Entidad e : cola) {
-			if(e.getIdentificador() == identificador) {
-				cola.remove(e);
-			}
+	public boolean esAgregable(PuntoDeVenta e) {
+		if(this.cargaActual + e.getNeededProduct() > 1000) {
+			return false;
 		}
+		return true;
 	}
-	public double distanciaTotal() {
 
-		LinkedList<Entidad> lista = (LinkedList<Entidad>) cola;
-		
-		// Obtiene el primer valor de la lista
-		Entidad anterior = new Entidad();
-		
-		double distancia = 0;
-		for(Entidad e : lista) {
-			distancia += anterior.distancia(e);
-			anterior = e;
-		}
-		
-		// Agrega la distancia al origen
-		distancia += anterior.distancia(new Entidad());
-		
-		return distancia;
-	}
-	public static double distanciaTotal(List<Entidad> l) {
-		Entidad anterior = new Entidad();
+	public double distanciaTotal() {
 		double dist = 0;
-		for(Entidad e : l) {
+		
+		Entidad anterior = new Entidad();
+		
+		dist += anterior.distancia(inicio);
+		anterior = inicio;
+		
+		for(Entidad e : cola) {
 			dist += anterior.distancia(e);
 			anterior = e;
 		}
-		dist += anterior.distancia(new Entidad());		
+		
+		dist += anterior.distancia(new Entidad());
+		
 		return dist;
 	}
 }
