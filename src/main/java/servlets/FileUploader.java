@@ -47,6 +47,7 @@ private static final long serialVersionUID = 1L;
 		 * Este archivo es revisado con un REGEX y subido al servidor donde puede ser accedido por otros
 		 * servlets.
 		 */
+		// TODO: Verificar IDs y eliminar las que se repitan
 		ServletFileUpload sfu = new ServletFileUpload(new DiskFileItemFactory());
 		String path = null;
 		File f = null;
@@ -60,9 +61,8 @@ private static final long serialVersionUID = 1L;
 				FileWriter fw = new FileWriter(f, true);
 				fw.append(item.getString());
 				fw.close();
-				SyntaxChecker.format(f);
+				SyntaxChecker.format(path);
 			}
-			
 		} catch (FileUploadException e) {
 			// En caso de que no se pueda recibir el archivo, se envia un codigo de error al usuario.
 			String error = "Se ha intentado parsear un archivo desde el objeto request, sin exito.";
