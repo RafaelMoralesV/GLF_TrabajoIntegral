@@ -3,6 +3,34 @@ package logical;
 import java.util.List;
 
 public class CentroDistribucion extends Entidad{
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = super.hashCode();
+		result = prime * result + cantCamiones;
+		result = prime * result + ((ptsReceptores == null) ? 0 : ptsReceptores.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!super.equals(obj))
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		CentroDistribucion other = (CentroDistribucion) obj;
+		if (cantCamiones != other.cantCamiones)
+			return false;
+		if (ptsReceptores == null) {
+			if (other.ptsReceptores != null)
+				return false;
+		} else if (!ptsReceptores.equals(other.ptsReceptores)) {
+			return false;
+		}
+		return true;
+	}
+
 	private int cantCamiones;
 	private List<PuntoDeVenta> ptsReceptores;
 	

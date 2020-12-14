@@ -44,10 +44,7 @@ public class Camino {
 		this.cargaActual += e.getNeededProduct();
 	}
 	public boolean esAgregable(PuntoDeVenta e) {
-		if(this.cargaActual + e.getNeededProduct() > 1000) {
-			return false;
-		}
-		return true;
+		return this.cargaActual + e.getNeededProduct() <= 1000;
 	}
 
 	public double distanciaTotal() {

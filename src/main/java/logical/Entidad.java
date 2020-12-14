@@ -126,9 +126,7 @@ public class Entidad {
 			return false;
 		if (posicionY != other.posicionY)
 			return false;
-		if (tipo != other.tipo)
-			return false;
-		return true;
+		return tipo == other.tipo;
 	}
 	@Override
 	public String toString() {
