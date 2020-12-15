@@ -13,29 +13,44 @@
 <script type="text/javascript" src="JS/utils.js"></script>
 </head>
 <body>
-	<div class="m-auto">
-		<a href="index.html">
-			<h1 id="titulo">Registro coordenadas GPS</h1>
-		</a>
-		<div class="resultado2">
+	<div class="bg">
+		<div class="m-auto">
+			<div>
+				<a href="index.html">
+					<h1 id="titulo">Registro coordenadas GPS</h1>
+				</a>
+				<div class="d-flex justify-content-end pr-4 pt-2">
+					<h6>
+						<a href="index.html">Ingresar Datos</a> / <a
+							href="asignarCamiones.html"> Asignar Camiones</a> / <a
+							href="asignarPuntosdeVenta.html" class="resaltar"> Asignar
+							Puntos de Distribucion</a> / <a href="resultado.html"> Resultado</a>
+					</h6>
+				</div>
+			</div>
+			<div class="resultado2 bg-dark text-light">
 
 
-			<h3>Asignar puntos de Distribucion a cada Punto de Venta</h3>
-			<button
-				class="btn btn-secondary btn-xs mx-auto text-center d-block m-3 "
-				id="somebutton2">Show</button>
-			<form action="registroCamiones" method="post">
-				<div class="resultado__output" id="detail"></div>
-				<input
-					class="btn btn-secondary btn-xs mx-auto text-center d-block m-3  "
-					type="submit" value="Upload">
+				<h3>Asignar puntos de Distribucion a cada Punto de Venta</h3>
+				<button
+					class="btn btn-secondary btn-xs mx-auto text-center d-block m-3 "
+					id="somebutton2">Show</button>
 
-			</form>
+				<form action="registroCamiones " method="post">
+					<div class="resultado__output" id="detail"></div>
+					<input
+						class="btn btn-secondary btn-xs mx-auto text-center d-block m-3  "
+						type="submit" value="Upload">
+
+				</form>
+			</div>
+			<a href="index.html"></a>
 		</div>
-		<a href="index.html"></a>
+		<div class="d-flex justify-content-end fixed-bottom mb-5 mr-5">
+		<a href="resultado.html"><button
+				class="btn btn-danger btn-lg">Siguiente</button></a>
+				</div>
 	</div>
-	<a id="siguiente" href="resultado.html"><button
-			class="btn btn-secondary">Siguiente</button></a>
 
 </body>
 </html>

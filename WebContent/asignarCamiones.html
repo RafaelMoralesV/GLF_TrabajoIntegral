@@ -33,14 +33,24 @@
 
 <body onload="load();">
 	<div class="m-auto">
-		<a href="index.html">
-			<h1 id="titulo">Registro coordenadas GPS</h1>
-		</a>
-		<div class="resultado1">
+		<div>
+			<a href="index.html">
+				<h1 id="titulo">Registro coordenadas GPS</h1>
+			</a>
+			<div class="d-flex justify-content-end pr-4 pt-2">
+				<h6>
+					<a href="index.html">Ingresar Datos</a> / <a href="asignarCamiones.html" class="resaltar">
+							Asignar Camiones</a> / <a href="asignarPuntosdeVenta.html">
+						Asignar Puntos de Distribucion</a> / <a href="resultado.html">
+						Resultado</a>
+				</h6>
+			</div>
+		</div>
+		<div class="resultado1 bg-dark text-light">
 			<h6>Asignar Camiones de cada Punto de Venta</h6>
 			<form id="formulario" action="registroCamiones" method="post">
 				<div class="resultado__output" id="detail"></div>
-				
+
 				<input
 					class="btn btn-secondary btn-xs mx-auto text-center d-block m-3  "
 					type="button" value="Upload" id="submit">
@@ -50,7 +60,9 @@
 
 		</div>
 	</div>
-	<a id="siguiente" href="asignarPuntosdeVenta.html"><button
-			class="btn btn-secondary">Siguiente</button></a>
+	<div class="d-flex justify-content-end fixed-bottom mb-5 mr-5">
+	<a href="asignarPuntosdeVenta.html"><button
+			class="btn btn-danger btn-lg ">Siguiente</button></a>
+			</div>
 </body>
 </html>

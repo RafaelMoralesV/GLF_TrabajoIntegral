@@ -1,7 +1,8 @@
 #titulo {
-	background-color: lightblue;
+	background-color: grey;
 	color: black;
 	padding: 40px;
+	margin-bottom: 0;
 	text-align: center;
 }
 
@@ -66,26 +67,80 @@
 	margin-bottom: 20px;
 }
 
-.form-group {
-	text-align: center;
-	width: 264px;
-	height: 229px;
-	padding: 20px;
-	display: inline-block;
-	margin: auto;
-	margin-top: 25px;
-	background-color: lightblue;
-	position: absolute;
-	left: 70%;
-	transform: translateX(-50%);
-	border: 10px double white;
-	border-radius: 10px;
-}
+
 
 #siguiente {
 	display: inline-block;
 	position: relative;
 	margin: auto;
 	left: 85%;
-	top: 200px;
+	top: 500px;
+}
+
+body, html {
+  height: 100%;
+  background-image: url("https://1.bp.blogspot.com/-HRzQXzzekH8/UGMJT9pkCNI/AAAAAAABJwQ/rpMcU_blh9M/s1600/camiones-de-carga-en-las-carrteras-interestatales-trailers-que-transportan-mercancias-de-pais-en-pais.jpg");
+  height: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  object-fit: cover; 
+  background-attachment: fixed;
+
+}
+
+a:link, a:visited, a:hover, a:active { color: red;
+       text-decoration: none!important;
+     }
+.resaltar{
+       background-color:grey;
+       border: 2px double black;
+       border-radius: 10px;
+       padding: 4px;
+       color:#fff;
+}
+.files input {
+    outline: 2px dashed #92b0b3;
+    outline-offset: -10px;
+    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    padding: 120px 0px 85px 35%;
+    text-align: center !important;
+    margin: 0;
+    width: 100% !important;
+}
+.files input:focus{     outline: 2px dashed #92b0b3;  outline-offset: -10px;
+    -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
+    transition: outline-offset .15s ease-in-out, background-color .15s linear; border:1px solid #92b0b3;
+ }
+.files{ position:relative}
+.files:after {  pointer-events: none;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 50px;
+    right: 0;
+    height: 56px;
+    content: "";
+    background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png);
+    display: block;
+    margin: 0 auto;
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+.color input{ background-color:#f1f1f1;}
+.files:before {
+    position: absolute;
+    bottom: 10px;
+    left: 0;  pointer-events: none;
+    width: 100%;
+    right: 0;
+    height: 57px;
+    content: " or drag it here. ";
+    display: block;
+    margin: 0 auto;
+    color: #2ea591;
+    font-weight: 600;
+    text-transform: capitalize;
+    text-align: center;
 }

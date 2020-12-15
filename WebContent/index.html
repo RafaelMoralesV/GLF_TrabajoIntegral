@@ -12,6 +12,7 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="JS/utils.js"></script>
 
+
 <script type="text/javascript">
 	function load(){
 		getEntities((data)=>{
@@ -56,28 +57,47 @@
 
 </head>
 <body onload="load();">
-	<a href="index.html">
-		<h1 id="titulo">Registro coordenadas GPS</h1>
-	</a>
-	<div class="form">
-		<form action="FileUploader" method="post" enctype="multipart/form-data">
-			Select File to Upload: <br> 
-			<input id="FileUpload" type="file" name="fileName" accept=".txt"> <br> 
-			<input class="btn btn-secondary btn-xs mx-auto text-center " 
-			type="button" value="Upload" id="Upload">
-		</form>
-	</div>
-	<div class="resultado">
-		<h6>Revisar los datos ingresados</h6>
-		<div class="resultado__output" id="somediv">
-			<ul></ul>
+	<div>
+		<div>
+			<a href="index.html">
+				<h1 id="titulo">Registro coordenadas GPS</h1>
+			</a>
+			<div class="d-flex justify-content-end pr-4 pt-2">
+				<h6>
+					<a href="index.html" class="resaltar">Ingresar Datos</a> / <a
+						href="asignarCamiones.html"> Asignar Camiones</a> / <a
+						href="asignarPuntosdeVenta.html"> Asignar Puntos de
+						Distribucion</a> / <a href="resultado.html"> Resultado</a>
+				</h6>
+			</div>
 		</div>
-	</div>
-
-
-
-	<a id="siguiente" href="asignarCamiones.html"><button
-			class="btn btn-secondary">Siguiente</button></a>
+		<div class="form container">
+			<div class="row  justify-content-center">
+				<div class="col-md-6">
+					<form action="FileUploader" method="post"
+						enctype="multipart/form-data">
+						<div class="form-group files color">
+							<label>Upload Your File </label> <input id="FileUpload"
+								type="file" name="fileName" accept=".txt" class="form-control"
+								multiple="">
+						</div>
+						<input class="btn btn-danger btn-lg btn-xs mx-auto text-center mb-4 " 
+            type="button" value="Upload" id="Upload">
+						
+					</form>
+				</div>
+			</div>
+			<div class="resultado bg-dark text-light">
+				<h6>Revisar los datos ingresados</h6>
+				<div class="resultado__output" id="somediv">
+					<ul></ul>
+				</div>
+			</div>
+			<div class="d-flex justify-content-end fixed-bottom mb-5 mr-4">
+				<a href="asignarCamiones.html"><button
+						class="btn btn-danger btn-lg mr-4">Siguiente</button></a>
+			</div>
+		</div>
 </body>
 </html>
 
