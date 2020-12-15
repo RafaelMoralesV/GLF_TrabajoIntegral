@@ -23,30 +23,32 @@ import logical.SyntaxChecker;
  * Servlet implementation class FileUploader
  */
 public class FileUploader extends HttpServlet {
-private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = 1L;
+
 	protected static final Logger LOGGER = LogManager.getLogger(FileUploader.class.getName());
-	
+
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		/*
 		 * Evita que haya comunicacion con este servlet en un metodo get.
 		 */
-		try{
+		try {
 			response.sendError(405, "Esta URL solo deberia ser utilizada para postear archivos");
-		} catch(Exception e) {
+		} catch (Exception e) {
 			LOGGER.error("Ha ocurrido un error en doGet()");
 			LOGGER.error(e);
 		}
 	}
-	
+
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		/*
-		 * Este servlet recibe un archivo del usuario.
-		 * Este archivo es revisado con un REGEX y subido al servidor donde puede ser accedido por otros
-		 * servlets.
+		 * Este servlet recibe un archivo del usuario. Este archivo es revisado con un
+		 * REGEX y subido al servidor donde puede ser accedido por otros servlets.
 		 */
+		// TODO: Verificar IDs y eliminar las que se repitan
 		ServletFileUpload sfu = new ServletFileUpload(new DiskFileItemFactory());
 		String path = null;
 		File f = null;
@@ -54,17 +56,17 @@ private static final long serialVersionUID = 1L;
 			// Parsear lista de archivos recibidos
 			// Solo se espera 1, pero se agrega toda la informacion obtenida a 'target.txt'
 			List<FileItem> files = sfu.parseRequest(request);
-			for(FileItem item : files) {
+			for (FileItem item : files) {
 				path = this.getServletContext().getRealPath("/");
 				f = new File(path + "target.txt");
-				FileWriter fw = new FileWriter(f, true);
-				fw.append(item.getString());
-				fw.close();
-				SyntaxChecker.format(f);
+				try (FileWriter fw = new FileWriter(f, true)) {
+					fw.append(item.getString());
+				}
+				SyntaxChecker.format(path);
 			}
-			
 		} catch (FileUploadException e) {
-			// En caso de que no se pueda recibir el archivo, se envia un codigo de error al usuario.
+			// En caso de que no se pueda recibir el archivo, se envia un codigo de error al
+			// usuario.
 			String error = "Se ha intentado parsear un archivo desde el objeto request, sin exito.";
 			LOGGER.warn(error);
 			LOGGER.warn(e);
@@ -78,7 +80,7 @@ private static final long serialVersionUID = 1L;
 			String error = "No se ha podido acceder al archivo. Revise que efectivamente se haya seleccionado y subido un archivo.";
 			LOGGER.warn(error);
 			LOGGER.warn(path);
-			if(f != null) {
+			if (f != null) {
 				LOGGER.warn(f.getName());
 			}
 			try {
@@ -90,7 +92,11 @@ private static final long serialVersionUID = 1L;
 		}
 		// Se envia al usuario a la pagina de inicio
 		// TODO este redirect debe mandar a una pagina con mas sentido.
-		response.sendRedirect(this.getServletContext().getContextPath());
+		try {
+			response.sendRedirect(this.getServletContext().getContextPath());
+		} catch (IOException e) {
+			LOGGER.error("No se ha podido redireccionar al usuario.\n{}", e.getMessage());
+		}
 	}
 
 }

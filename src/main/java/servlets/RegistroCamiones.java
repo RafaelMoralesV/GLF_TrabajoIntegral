@@ -17,35 +17,52 @@ import org.apache.logging.log4j.Logger;
 public class RegistroCamiones extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected static final Logger LOGGER = LogManager.getLogger(RegistroCamiones.class.getName());
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public RegistroCamiones() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO postear desde un archivo
-		response.getWriter().append("10");
+	public RegistroCamiones() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	@Override
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		try {
+			response.sendError(405, "Esta URL no debe ser accedida con un metodo GET");
+		} catch (IOException e) {
+			LOGGER.error("No se pudo enviar una respuesta al usuario.\n{}", e.getMessage());
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Agregar lo que se postee a un archivo
 		Enumeration<?> e = request.getParameterNames();
-		while(e.hasMoreElements()) {
+		while (e.hasMoreElements()) {
 			String id = (String) e.nextElement();
-			int obj = Integer.parseInt(request.getParameter(id));
-			LOGGER.info("(ID): {}\t(VALUE): {}", id, obj);
+			try {
+				int obj = Integer.parseInt(request.getParameter(id));
+				LOGGER.info("(ID): {}\t(VALUE): {}", id, obj);
+			} catch (NumberFormatException ex) {
+				LOGGER.error("No se pudo parsear la ID desde el objeto request.\n{}", ex.getMessage());
+			}
 		}
-		response.sendError(501, "Aun no implementado");
+		
+		
+		response.setContentType("text/plain");
+		response.setStatus(200);
+		response.getWriter().append("Se ha agregado correctamente");
 	}
 
 }

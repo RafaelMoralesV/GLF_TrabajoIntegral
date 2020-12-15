@@ -12,25 +12,68 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="JS/utils.js"></script>
 
+<script type="text/javascript">
+	function load(){
+		getEntities((data)=>{
+			var $ul = $("ul").appendTo($("#somediv"));
+			$.each(data, (index, item) => {
+				var string = "(" + item.Tipo + ") ID: " + item.ID +
+					" en (" + item.posX + ", " + item.posY + ")";
+				$("<li>").text(string).appendTo($ul);
+			});
+		});
+	}
+	
+	$(document).on("click", "#Upload", () => {
+		const url = $("form").attr("action");
+		var formData = new FormData();
+		var files = $("#FileUpload")[0].files;
+		
+		if(files.length > 0){
+			
+			formData.append('file', files[0]);
+			$.ajax({
+			    url : url,
+			    type: "POST",
+			    data : formData,
+			    processData: false,
+			    contentType: false,
+			    success:function(data, textStatus, jqXHR){
+			    	$("ul").empty();
+			    	load();
+			    },
+			    error: function(jqXHR, textStatus, errorThrown){   
+			    	alert("No se ha podido subir el archivo");
+			    }
+			});
+		}
+		else{
+			alert("Por favor seleccione un archivo");
+		}
+		
+	});
+</script>
+
 </head>
-<body>
+<body onload="load();">
 	<a href="index.html">
 		<h1 id="titulo">Registro coordenadas GPS</h1>
 	</a>
 	<div class="form">
-		<form action="FileUploader" method="post"
-			enctype="multipart/form-data">
-			Select File to Upload: <br> <input type="file" name="fileName"
-				accept=".txt"> <br> <input
-				class="btn btn-secondary btn-xs mx-auto text-center " type="submit"
-				value="Upload">
+		<form action="FileUploader" method="post" enctype="multipart/form-data">
+			Select File to Upload: <br> 
+			<input id="FileUpload" type="file" name="fileName" accept=".txt"> <br> 
+			<input class="btn btn-secondary btn-xs mx-auto text-center " 
+			type="button" value="Upload" id="Upload">
 		</form>
 	</div>
 	<div class="resultado">
 		<h6>Revisar los datos ingresados</h6>
 		<button class="btn btn-secondary btn-xs mx-auto text-center "
 			id="somebutton">Show</button>
-		<div class="resultado__output" id="somediv"></div>
+		<div class="resultado__output" id="somediv">
+			<ul></ul>
+		</div>
 	</div>
 
 
