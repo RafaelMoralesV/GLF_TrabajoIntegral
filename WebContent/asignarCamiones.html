@@ -11,28 +11,42 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="JS/utils.js"></script>
+
+<script>
+	function load(){
+		getEntities((data)=>{
+			for(i in data){
+				const obj = data[i];
+				var mainContainer = document.getElementById("detail");
+				if(obj.Tipo == "C"){
+					var header = document.createElement("div");
+					header.innerHTML = '<div class= "font-italic"> (' + obj.Tipo + ') ID: ' + obj.ID + ' Pos: (' + obj.posX + ', ' + obj.posY + '): '
+						+ '<input class="text-center d-flex justify-content-between mt-2 mb-4" name="' + obj.ID + '" type="number" min="0" value="0"></div>'
+					mainContainer.appendChild(header);
+				}
+			}
+		});
+	}
+</script>
+
 </head>
 
-<body>
+<body onload="load();">
 	<div class="m-auto">
 		<a href="index.html">
 			<h1 id="titulo">Registro coordenadas GPS</h1>
 		</a>
 		<div class="resultado1">
 			<h6>Asignar Camiones de cada Punto de Venta</h6>
-			<button
-				class="btn btn-secondary btn-xs mx-auto text-center d-block m-3 "
-				id="somebutton1">Show</button>
-			<form action="registroCamiones" method="post">
+			<form id="formulario" action="registroCamiones" method="post">
 				<div class="resultado__output" id="detail"></div>
+				
 				<input
 					class="btn btn-secondary btn-xs mx-auto text-center d-block m-3  "
-					type="submit" value="Upload">
+					type="button" value="Upload" id="submit">
 
-			</form>
-			<IMG SRC="tenor.gif">
+			</form>		
 		</div>
-
 	</div>
 
 

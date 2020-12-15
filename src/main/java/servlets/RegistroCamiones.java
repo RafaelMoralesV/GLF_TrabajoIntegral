@@ -57,13 +57,12 @@ public class RegistroCamiones extends HttpServlet {
 			} catch (NumberFormatException ex) {
 				LOGGER.error("No se pudo parsear la ID desde el objeto request.\n{}", ex.getMessage());
 			}
-
 		}
-		try {
-			response.sendError(501, "Aun no implementado");
-		} catch (IOException ex) {
-			LOGGER.error("No se pudo enviar una respuesta al usuario.\n{}", ex.getMessage());
-		}
+		
+		
+		response.setContentType("text/plain");
+		response.setStatus(200);
+		response.getWriter().append("Se ha agregado correctamente");
 	}
 
 }
