@@ -41,7 +41,7 @@ $(document).one("click", "#somebutton2", () => {
 						var mainContainer = document.getElementById("detail");
 						if (obj1.Tipo == "C") {
 							var opt = document.createElement('OPTION');
-							opt.setAttribute('name','selector' + obj.ID);
+							opt.setAttribute('name', 'selector' + obj.ID);
 							opt.innerHTML = '(' + obj1.Tipo + ') ID: ' + obj1.ID + ' Pos: (' + obj1.posX + ', ' + obj1.posY + ')';
 							sel.appendChild(opt);
 						}
@@ -53,8 +53,8 @@ $(document).one("click", "#somebutton2", () => {
 					mainContainer.appendChild(header);
 					mainContainer.appendChild(sel);
 					mainContainer.appendChild(cantidad);
-					
-					
+
+
 				}
 			}
 		})
