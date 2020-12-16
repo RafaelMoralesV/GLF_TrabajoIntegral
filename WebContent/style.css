@@ -144,3 +144,11 @@ a:link, a:visited, a:hover, a:active { color: red;
     text-transform: capitalize;
     text-align: center;
 }
+#dump{
+	margin-left: 100px;
+	margin-bottom:47px;
+}
+#eliminar{
+	margin-left: 400px;
+	margin-bottom:47px;
+}

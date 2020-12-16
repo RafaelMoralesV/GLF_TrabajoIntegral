@@ -102,8 +102,9 @@
 		</div>
 		<!-- ESTE BOTON SE ENCARGA DE ELIMINAR LA LISTA DE ENTIDADES -->
 		<!--  POR FAVOR DEJENLO BONITO GRACIAS -->
+		
 		<div>
-			<input type="button" id="eliminar" value="Borrar lista de entidades"></input>
+			<input type="button" id="eliminar" value="Borrar lista de entidades" class="btn btn-danger btn-lg d-flex fixed-bottom"></input>
 			<script>
 				$("#eliminar").on("click", () => {
 					$.post("FileCleaner", (response) => {
@@ -112,9 +113,8 @@
 					});
 				});
 			</script>
-		</div>
-		<div>
-			<input type="button" id="dump" value="Obtener texto rechazado"></input>
+		
+			<input type="button" id="dump" value="Obtener texto rechazado" class="btn btn-danger btn-lg d-flex fixed-bottom"></input>
 			<label id="status"></label>
 			<script>
 				$("#dump").on("click", () => {
