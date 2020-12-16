@@ -100,6 +100,8 @@
 						class="btn btn-danger btn-lg mr-4">Siguiente</button></a>
 			</div>
 		</div>
+		<!-- ESTE BOTON SE ENCARGA DE ELIMINAR LA LISTA DE ENTIDADES -->
+		<!--  POR FAVOR DEJENLO BONITO GRACIAS -->
 		<div>
 			<input type="button" id="eliminar" value="Borrar lista de entidades"></input>
 			<script>
@@ -108,6 +110,29 @@
 						load();
 						alert(response);
 					});
+				});
+			</script>
+		</div>
+		<div>
+			<input type="button" id="dump" value="Obtener texto rechazado"></input>
+			<label id="status"></label>
+			<script>
+				$("#dump").on("click", () => {
+					fetch('FileCleaner')
+					  .then(resp => resp.blob())
+					  .then(blob => {
+					    const url = window.URL.createObjectURL(blob);
+					    const a = document.createElement('a');
+					    a.style.display = 'none';
+					    a.href = url;
+					    // the filename you want
+					    a.download = 'dump.txt';
+					    document.body.appendChild(a);
+					    a.click();
+					    window.URL.revokeObjectURL(url);
+					    $("#status").val("Archivo descargado!");
+					  })
+					  .catch(() => alert('oh no!'));
 				});
 			</script>
 		</div>
