@@ -26,6 +26,14 @@ public class PuntoDeVenta extends Entidad {
 		this.setNeededProduct(producto);
 	}
 	
+	public PuntoDeVenta(Entidad e, int producto) {
+		this(producto,
+				e.getIdentificador(),
+				e.getTipo(),
+				e.getPosicionX(),
+				e.getPosicionY());
+	}
+	
 	public PuntoDeVenta() {
 		super();
 		neededProduct = 0;
