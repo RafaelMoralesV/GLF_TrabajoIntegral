@@ -48,7 +48,7 @@ public class FileUploader extends HttpServlet {
 		 * Este servlet recibe un archivo del usuario. Este archivo es revisado con un
 		 * REGEX y subido al servidor donde puede ser accedido por otros servlets.
 		 */
-		// TODO: Verificar IDs y eliminar las que se repitan
+		
 		ServletFileUpload sfu = new ServletFileUpload(new DiskFileItemFactory());
 		String path = null;
 		File f = null;
@@ -89,13 +89,6 @@ public class FileUploader extends HttpServlet {
 				LOGGER.error("No se ha podido enviar el codigo de error");
 				LOGGER.error(exc);
 			}
-		}
-		// Se envia al usuario a la pagina de inicio
-		// TODO este redirect debe mandar a una pagina con mas sentido.
-		try {
-			response.sendRedirect(this.getServletContext().getContextPath());
-		} catch (IOException e) {
-			LOGGER.error("No se ha podido redireccionar al usuario.\n{}", e.getMessage());
 		}
 	}
 

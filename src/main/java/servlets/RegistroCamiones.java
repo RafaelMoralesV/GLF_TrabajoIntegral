@@ -25,7 +25,6 @@ public class RegistroCamiones extends HttpServlet {
 	 */
 	public RegistroCamiones() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -49,7 +48,6 @@ public class RegistroCamiones extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Agregar lo que se postee a un archivo
 		Enumeration<?> e = request.getParameterNames();
 		while (e.hasMoreElements()) {
 			String id = (String) e.nextElement();

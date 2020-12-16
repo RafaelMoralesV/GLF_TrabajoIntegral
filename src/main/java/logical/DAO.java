@@ -40,8 +40,6 @@ public class DAO {
 				lista.add(new Camino(e));
 			}
 		}
-		List<Camino> aux = lista;
-		return;
 	}
 	
 	public static boolean agregar(String path, String idCD, String idPV, int producto) {
