@@ -16,6 +16,7 @@
 <script type="text/javascript">
 	function load(){
 		getEntities((data)=>{
+			$("ul").empty();
 			var $ul = $("ul").appendTo($("#somediv"));
 			$.each(data, (index, item) => {
 				var string = "(" + item.Tipo + ") ID: " + item.ID +
@@ -81,9 +82,10 @@
 								type="file" name="fileName" accept=".txt" class="form-control"
 								multiple="">
 						</div>
-						<input class="btn btn-danger btn-lg btn-xs mx-auto text-center mb-4 " 
-            type="button" value="Upload" id="Upload">
-						
+						<input
+							class="btn btn-danger btn-lg btn-xs mx-auto text-center mb-4 "
+							type="button" value="Upload" id="Upload">
+
 					</form>
 				</div>
 			</div>
@@ -98,6 +100,18 @@
 						class="btn btn-danger btn-lg mr-4">Siguiente</button></a>
 			</div>
 		</div>
+		<div>
+			<input type="button" id="eliminar" value="Borrar lista de entidades"></input>
+			<script>
+				$("#eliminar").on("click", () => {
+					$.post("FileCleaner", (response) => {
+						load();
+						alert(response);
+					});
+				});
+			</script>
+		</div>
+	</div>
 </body>
 </html>
 
