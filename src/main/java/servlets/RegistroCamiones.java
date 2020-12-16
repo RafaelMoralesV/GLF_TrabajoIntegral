@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import logical.DAO;
+
 /**
  * Servlet implementation class registroCamiones
  */
@@ -53,7 +55,9 @@ public class RegistroCamiones extends HttpServlet {
 			String id = (String) e.nextElement();
 			try {
 				int obj = Integer.parseInt(request.getParameter(id));
-				LOGGER.info("(ID): {}\t(VALUE): {}", id, obj);
+				for(int i = 0; i < obj; i++) {
+					DAO.crear(this.getServletContext().getRealPath("/"), id);
+				}
 			} catch (NumberFormatException ex) {
 				LOGGER.error("No se pudo parsear la ID desde el objeto request.\n{}", ex.getMessage());
 			}

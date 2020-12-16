@@ -10,10 +10,10 @@ public class DAO {
 	static final List<Camino> lista = new ArrayList<>();
 	protected static final Logger LOGGER = LogManager.getLogger(DAO.class.getName());
 	
-	private static List<Entidad> cargar(){
+	private static List<Entidad> cargar(String path){
 		List<Entidad> l = new ArrayList<>();
 		try {
-			Parser.parseFile("target.txt");
+			l = Parser.parseFile(path + "target.txt");
 		}
 		catch(java.io.IOException e) {
 			LOGGER.fatal("No pudo cargarse el archivo target.txt con la lista de entidades.\n{}", e.getMessage());
@@ -21,9 +21,9 @@ public class DAO {
 		return l;
 	}
 	
-	private static Entidad iniciar(String id) 
+	private static Entidad iniciar(String path, String id) 
 			throws NumberFormatException{
-		List<Entidad> l = cargar();
+		List<Entidad> l = cargar(path);
 		for(Entidad e : l) {
 			if(e.getIdentificador() == Integer.parseInt(id)) {
 				return e;
@@ -32,18 +32,19 @@ public class DAO {
 		return new Entidad();
 	}
 	
-	public static void crear(String id) 
+	public static void crear(String path, String id) 
 			throws NumberFormatException, IllegalStateException{
-		List<Entidad> l = cargar();
+		List<Entidad> l = cargar(path);
 		for(Entidad e : l) {
 			if(e.getTipo() == 'C' && e.getIdentificador() == Integer.parseInt(id)) {
-				Camino aux = new Camino(e);
-				lista.add(aux);
+				lista.add(new Camino(e));
 			}
 		}
+		List<Camino> aux = lista;
+		return;
 	}
 	
-	public static boolean agregar(String idCD, String idPV, int producto) {
+	public static boolean agregar(String path, String idCD, String idPV, int producto) {
 		
 		/*
 		 * Funcion booleana que agregar un punto de venta hacia el mejor camino disponible
@@ -51,8 +52,8 @@ public class DAO {
 		 * Retorna verdadero en caso de que se haya hecho el cambio, y falso en caso contrario.
 		 */
 		
-		Entidad inicio 	= iniciar(idCD);
-		PuntoDeVenta pdv 			= new PuntoDeVenta(iniciar(idPV), producto);
+		Entidad inicio 	= iniciar(path, idCD);
+		PuntoDeVenta pdv 			= new PuntoDeVenta(iniciar(path, idPV), producto);
 		
 		boolean cambiable = false;
 		double mejorDist = Double.MAX_VALUE;
