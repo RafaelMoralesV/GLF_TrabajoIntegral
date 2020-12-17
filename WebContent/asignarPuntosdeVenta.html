@@ -41,7 +41,7 @@
 					cantidad.innerHTML = '<div class= "text-center my-2">'
 										+'Cantidad de productos para este Punto de Venta:<br>'
 										+'<input class="my-3 text-center" name="' 
-										+'i-' + obj.ID + '" type="number" min="0" value="0"></div>'
+										+'i-' + obj.ID + '" type="number" min="0" max="1000" value="0"></div>'
 					mainContainer.appendChild(header);
 					mainContainer.appendChild(sel);
 					mainContainer.appendChild(cantidad);
@@ -74,12 +74,12 @@
 				<h3>Asignar puntos de Distribucion a cada Punto de Venta</h3>
 				<form action="AsignarProducto" method="post">
 					<div class="resultado__output" id="detail"></div>
-					<input
-						class="btn btn-secondary btn-xs mx-auto text-center d-block m-3  "
-						type="button" value="Upload" id="submit">
-
 				</form>
+				<input class="btn btn-secondary btn-lg mx-auto text-center d-block m-3"
+						type="button" value="Upload" id="submit"></input>
 			</div>
+			
+			
 			<a href="index.html"></a>
 		</div>
 		<div class="d-flex justify-content-end fixed-bottom mb-5 mr-5">

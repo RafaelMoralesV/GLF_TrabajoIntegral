@@ -22,6 +22,9 @@ public class AsignarProducto extends HttpServlet {
 			String res = request.getParameter(id);
 			LOGGER.debug("{}: {}", id, res);
 		}
+		response.setContentType("Text/plain");
+		response.setStatus(200);
+		response.getWriter().append("Todo pulento choro");
 	}
 
 }

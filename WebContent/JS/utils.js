@@ -5,7 +5,6 @@ function getEntities(callback){
 }
 
 $(document).on("click", "#submit", ()=>{
-	console.log("CLICK");
 	var form = $("form");
 	var url = form.attr("action");
 	var formData = form.serializeArray();
