@@ -48,7 +48,13 @@
 				}
 			}
 		});
+		
 	}
+	$(document).on("click", "#submit", () => {
+		
+		$('#appear').removeAttr('disabled')
+			
+});
 </script>
 
 </head>
@@ -64,14 +70,12 @@
 						<a href="index.html">Ingresar Datos</a> / <a
 							href="asignarCamiones.html"> Asignar Camiones</a> / <a
 							href="asignarPuntosdeVenta.html" class="resaltar"> Asignar
-							Puntos de Distribucion</a> / <a href="resultado.html"> Resultado</a>
+							Puntos de Distribucion</a> / Resultado
 					</h6>
 				</div>
 			</div>
 			<div class="resultado2 bg-dark text-light">
 				<h3>Asignar puntos de Distribucion a cada Punto de Venta</h3>
-				<input class="btn btn-secondary btn-xs mx-auto d-block text-center m-3"
-						type="button" value="Confirmar" id="submit"></input>
 				<form action="AsignarProducto" method="post">
 					<div class="resultado__output" id="detail"></div>
 				</form>
@@ -81,16 +85,19 @@
 			
 			<a href="index.html"></a>
 		</div>
-		<div class="d-inline fixed-bottom d-flex justify-content-end mr-4">
+		<div class="d-inline fixed-bottom d-flex justify-content-end mr-4 mb-5">
 		<div>
 		<input class="btn btn-danger btn-lg mx-5"
 						type="button" value="Upload" id="submit"></input>
-		</div>
-		
+		</div>	
 		<div>
-			<a href="resultado.html"><button class="btn btn-danger btn-lg mr-5">Siguiente</button></a>
+			<a href="resultado.html"><button class="btn btn-danger btn-lg mr-5" id="appear" disabled="disabled">Siguiente</button></a>
 			
 		</div>
+		<div>
+		<a href="asignarCamiones.html"><button
+						class="btn btn-danger btn-lg  d-flex fixed-bottom ml-5 mb-5">Volver</button></a>
+						</div>
 		</div>
 	</div>
 

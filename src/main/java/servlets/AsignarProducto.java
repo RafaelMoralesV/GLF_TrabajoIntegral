@@ -30,7 +30,7 @@ public class AsignarProducto extends HttpServlet {
 		}
 		response.setContentType("Text/plain");
 		response.setStatus(200);
-		response.getWriter().append("Todo pulento choro");
+		response.getWriter().append("Puntos y cantidad de productos asignados correctamente");
 	}
 
 }
