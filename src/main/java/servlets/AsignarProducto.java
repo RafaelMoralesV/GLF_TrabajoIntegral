@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import logical.DAO;
+
 public class AsignarProducto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected static final Logger LOGGER = LogManager.getLogger(AsignarProducto.class.getName());
@@ -18,9 +20,13 @@ public class AsignarProducto extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Enumeration<?> e = request.getParameterNames();
 		while (e.hasMoreElements()) {
-			String id = (String) e.nextElement();
-			String res = request.getParameter(id);
-			LOGGER.debug("{}: {}", id, res);
+			String idSel = (String) e.nextElement();
+			String idCD = request.getParameter(idSel);
+			String idProd = (String) e.nextElement();
+			String resProd = request.getParameter(idProd);
+			
+			String[] idPDV = idSel.split("-");
+			DAO.agregar(this.getServletContext().getRealPath("/"), idCD, idPDV[1], Integer.parseInt(resProd));
 		}
 		response.setContentType("Text/plain");
 		response.setStatus(200);
