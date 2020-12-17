@@ -11,8 +11,48 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="JS/utils.js"></script>
+
+<script type="text/javascript">
+	function load(){
+		getEntities((data) => {
+			for (var j = 0; j < data.length; j++) {
+				const obj = data[j];
+				var mainContainer = document.getElementById("detail");
+				var sel = document.createElement("select");
+				if (obj.Tipo == "P") {
+					for (var i = 0; i < data.length; i++) {
+						const obj1 = data[i];
+						if (obj1.Tipo == "C") {
+							var opt = document.createElement('OPTION');
+							opt.innerHTML = '(' + obj1.Tipo + ') ID: ' + obj1.ID + ' Pos: (' + obj1.posX + ', ' + obj1.posY + ')';
+							opt.setAttribute("value", obj1.ID);
+							sel.setAttribute('name', 's-' + obj.ID);
+							sel.appendChild(opt);
+						}
+					}
+					var header = document.createElement("div");
+					var cantidad = document.createElement("div");
+					header.innerHTML = '<div class= "h5 mb-3 mt-5 resultado__output"><u> (' + obj.Tipo 
+										+ ') ID: ' + obj.ID 
+										+ ' Pos: (' + obj.posX + ', ' + obj.posY + ')</u></div>'
+										+'<div class="mb-3 d-flex align-items-end justify-content-center">'
+										+ 'Punto de distribucion asociado</div>'
+										
+					cantidad.innerHTML = '<div class= "text-center my-2">'
+										+'Cantidad de productos para este Punto de Venta:<br>'
+										+'<input class="my-3 text-center" name="' 
+										+'i-' + obj.ID + '" type="number" min="0" value="0"></div>'
+					mainContainer.appendChild(header);
+					mainContainer.appendChild(sel);
+					mainContainer.appendChild(cantidad);
+				}
+			}
+		});
+	}
+</script>
+
 </head>
-<body>
+<body onload="load();">
 	<div class="bg">
 		<div class="m-auto">
 			<div>
@@ -32,24 +72,19 @@
 
 
 				<h3>Asignar puntos de Distribucion a cada Punto de Venta</h3>
-				<button
-					class="btn btn-secondary btn-xs mx-auto text-center d-block m-3 "
-					id="somebutton2">Show</button>
-
-				<form action="registroCamiones " method="post">
+				<form action="AsignarProducto" method="post">
 					<div class="resultado__output" id="detail"></div>
 					<input
 						class="btn btn-secondary btn-xs mx-auto text-center d-block m-3  "
-						type="submit" value="Upload">
+						type="button" value="Upload" id="submit">
 
 				</form>
 			</div>
 			<a href="index.html"></a>
 		</div>
 		<div class="d-flex justify-content-end fixed-bottom mb-5 mr-5">
-		<a href="resultado.html"><button
-				class="btn btn-danger btn-lg">Siguiente</button></a>
-				</div>
+			<a href="resultado.html"><button class="btn btn-danger btn-lg">Siguiente</button></a>
+		</div>
 	</div>
 
 </body>

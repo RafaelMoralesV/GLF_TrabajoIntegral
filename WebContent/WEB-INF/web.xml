@@ -30,6 +30,13 @@
 		<servlet-name>FileCleaner</servlet-name>
 		<servlet-class>servlets.FileCleaner</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>AsignarProducto</display-name>
+		<servlet-name>AsignarProducto</servlet-name>
+		<servlet-class>servlets.AsignarProducto</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Enlistador</servlet-name>
 		<url-pattern>/Enlistador</url-pattern>
@@ -45,6 +52,10 @@
 	<servlet-mapping>
 		<servlet-name>FileCleaner</servlet-name>
 		<url-pattern>/FileCleaner</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AsignarProducto</servlet-name>
+		<url-pattern>/AsignarProducto</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
