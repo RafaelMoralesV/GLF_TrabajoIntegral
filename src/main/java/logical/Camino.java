@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Camino {
 	protected Entidad inicio;
-	protected LinkedList<PuntoDeVenta> cola;
+	protected LinkedList<PuntoDeVenta> cola = new LinkedList<>();
 
 	protected int cargaActual = 0;
 
@@ -56,6 +56,11 @@ public class Camino {
 
 		LinkedList<PuntoDeVenta> mejorCamino = this.cola;
 		double mejorDistancia = Double.MAX_VALUE;
+		
+		if(estadoInicial.size() == 0) {
+			mejorCamino.add(e);
+			return mejorCamino;
+		}
 
 		for (int i = 0; i < estadoInicial.size(); i++) {
 			// Coloca el nuevo punto de venta en cada indice y prueba
