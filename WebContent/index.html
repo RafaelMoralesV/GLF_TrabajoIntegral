@@ -22,6 +22,8 @@
 				var string = "(" + item.Tipo + ") ID: " + item.ID +
 					" en (" + item.posX + ", " + item.posY + ")";
 				$("<li>").text(string).appendTo($ul);
+				if(data.length>0)
+					$('#appear').removeAttr('disabled');
 			});
 		});
 	}
@@ -48,6 +50,8 @@
 			    	alert("No se ha podido subir el archivo");
 			    }
 			});
+			$('#appear').removeAttr('disabled')
+			
 		}
 		else{
 			alert("Por favor seleccione un archivo");
@@ -95,22 +99,23 @@
 					<ul></ul>
 				</div>
 			</div>
-			<div class="d-flex justify-content-end fixed-bottom mb-5 mr-4">
+			<div  class="d-flex justify-content-end fixed-bottom mb-5 mr-4">
 				<a href="asignarCamiones.html"><button
-						class="btn btn-danger btn-lg mr-4">Siguiente</button></a>
+						class="btn btn-danger btn-lg mr-4" id="appear" disabled="disabled">Siguiente</button></a>
 			</div>
 		</div>
 		<!-- ESTE BOTON SE ENCARGA DE ELIMINAR LA LISTA DE ENTIDADES -->
 		<!--  POR FAVOR DEJENLO BONITO GRACIAS -->
 		
 		<div>
-			<input type="button" id="eliminar" value="Borrar lista de entidades" class="btn btn-danger btn-lg d-flex fixed-bottom"></input>
+			<input type="button" id="eliminar" value="Borrar lista de entidades" class="btn btn-danger btn-lg  d-flex fixed-bottom"></input>
 			<script>
 				$("#eliminar").on("click", () => {
 					$.post("FileCleaner", (response) => {
 						load();
 						alert(response);
 					});
+					 $('#appear').attr('disabled', 'disabled');
 				});
 			</script>
 		
