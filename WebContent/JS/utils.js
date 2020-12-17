@@ -11,6 +11,7 @@ $(document).on("click", "#submit", ()=>{
 	$.post(url, formData).done((data)=>{
 		alert(data);
 	});
+
 });
 
 
