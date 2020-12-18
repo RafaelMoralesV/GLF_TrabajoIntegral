@@ -75,4 +75,8 @@ public class DAO {
 		}
 		return false;
 	}
+
+	public static List<Camino> getLista() {
+		return lista;
+	}
 }

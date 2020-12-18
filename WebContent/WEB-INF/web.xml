@@ -37,6 +37,13 @@
 		<servlet-name>AsignarProducto</servlet-name>
 		<servlet-class>servlets.AsignarProducto</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>Resultado</display-name>
+		<servlet-name>Resultado</servlet-name>
+		<servlet-class>servlets.Resultado</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>Enlistador</servlet-name>
 		<url-pattern>/Enlistador</url-pattern>
@@ -56,6 +63,10 @@
 	<servlet-mapping>
 		<servlet-name>AsignarProducto</servlet-name>
 		<url-pattern>/AsignarProducto</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Resultado</servlet-name>
+		<url-pattern>/Resultado</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.html</welcome-file>
