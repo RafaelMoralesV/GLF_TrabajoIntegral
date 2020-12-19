@@ -41,7 +41,7 @@ public class SyntaxChecker {
 				if (!lines.get(i).matches(REGEX)) {
 					logger.trace("Se ha eliminado una linea con sintaxis incorrecta: {}", lines.get(i));
 					
-					dump.add(lines.get(i));
+					dump.add("BAD SYNTAX: " + lines.get(i));
 					lines.remove(i--);
 				}
 				else {
@@ -50,7 +50,7 @@ public class SyntaxChecker {
 					if(ids.contains(arr[1])) {
 						logger.trace("Se ha eliminado una linea que utiliza una id no disponible: {}", lines.get(i));
 						
-						dump.add(lines.get(i));
+						dump.add("ID NO DISPONIBLE: " + lines.get(i));
 						lines.remove(i--);
 					}
 					else {
@@ -71,7 +71,6 @@ public class SyntaxChecker {
 
 		} catch (Exception e) {
 			// En caso de errores con el archivo, se logea.
-			// TODO evaluar si es mejor arrojar los errores por sobre logearlos.
 			logger.warn(e);
 		}
 	}

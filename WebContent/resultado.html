@@ -21,11 +21,7 @@ function getResultado(callback){
 
 function load(){
 	getResultado((data)=>{
-		//console.log(data);
 		getEntities((entidades)=>{
-			// PROBABLEMENTE HAY UNA MEJOR FORMA DE ACCEDER A LA INFORMACION DE CADA OBJETO
-			// EN ESTE CASO, LOS FOR CON i Y j ACCEDEN LISTAS DE DATOS
-			// Y EL RESTO ACCEDE A UN OBJETO CON 1 SOLA PROPIEDAD
 			for(i in data){
 				const camino = data[i];
 				
