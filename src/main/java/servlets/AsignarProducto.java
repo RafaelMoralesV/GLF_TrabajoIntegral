@@ -18,6 +18,8 @@ public class AsignarProducto extends HttpServlet {
 	protected static final Logger LOGGER = LogManager.getLogger(AsignarProducto.class.getName());
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int statusCode = HttpServletResponse.SC_OK;
+		
 		DAO.vaciarCaminos();
 		Enumeration<?> e = request.getParameterNames();
 		while (e.hasMoreElements()) {
@@ -27,11 +29,62 @@ public class AsignarProducto extends HttpServlet {
 			String resProd = request.getParameter(idProd);
 			
 			String[] idPDV = idSel.split("-");
-			DAO.agregar(this.getServletContext().getRealPath("/"), idCD, idPDV[1], Integer.parseInt(resProd));
+			try {
+				int producto = Integer.parseInt(resProd);
+				if(producto < 0 || producto > 1000) {
+					throw new IllegalStateException("La cantidad de producto ingresada es invalida.");
+				}
+				if(!DAO.agregar(this.getServletContext().getRealPath("/"), idCD, idPDV[1], producto)) {
+					throw new InsertionException("No se pudo insertar la entidad en ningun camino.");
+				}
+			} catch (NullPointerException npe) {
+				LOGGER.error("Se ha intentado agregar un punto de venta a un centro que no posee camiones hoy.");
+				statusCode = HttpServletResponse.SC_CONFLICT;
+			} catch (InsertionException ie) {
+				LOGGER.error(ie.getMessage());
+				LOGGER.error("Este error puede ocurrir cuando ningun camino tiene capacidad suficiente para "
+						+ "insertar esta entidad, y es normalmente un error de algoritmo.");
+				statusCode = HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
+			} catch(NumberFormatException nfe) {
+				LOGGER.error("El producto necesario no es un valor entero, y ha producido un error. Valor recibido: {}", resProd);
+				statusCode =  HttpServletResponse.SC_BAD_REQUEST;
+			} catch(IllegalStateException ise) {
+				LOGGER.error("El producto necesario es una cantidad invalida o imposible y no puede ser utilizado.");
+				statusCode = HttpServletResponse.SC_BAD_REQUEST;
+			}
 		}
-		response.setContentType("Text/plain");
-		response.setStatus(200);
-		response.getWriter().append("Puntos y cantidad de productos asignados correctamente");
+		
+		try {
+			response.setContentType("Text/plain");
+			switch(statusCode) {
+			case 200:
+				response.setStatus(statusCode);
+				response.getWriter().append("Puntos y cantidad de productos asignados correctamente");
+				break;
+			case 400:
+				response.sendError(statusCode, "Uno o mas puntos de venta tiene valores malformados en el campo de producto necesario");
+				break;
+			case 409:
+				response.setStatus(statusCode);
+				response.getWriter().append("Se ha intentado vincular un punto de venta a un centro de distribucion"
+						+ " que no posee camiones. Por favor revise el formulario e intentelo de nuevo.");
+				break;
+			case 500:
+				response.sendError(statusCode, "Ha ocurrido un error al procesar el resultado");
+				break;
+			}
+		} catch (IOException ioe) {
+			LOGGER.fatal("No se ha podido enviar una respuesta al usuario.\n{}", ioe.getMessage());
+			LOGGER.debug(ioe.getStackTrace());
+		}
+	}
+	
+	private class InsertionException extends RuntimeException{
+		private static final long serialVersionUID = 1L;
+
+		public InsertionException(String message) {
+			super(message);
+		}
 	}
 
 }

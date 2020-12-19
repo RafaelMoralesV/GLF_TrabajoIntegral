@@ -49,46 +49,53 @@ public class FileUploader extends HttpServlet {
 		 * REGEX y subido al servidor donde puede ser accedido por otros servlets.
 		 */
 		
-		ServletFileUpload sfu = new ServletFileUpload(new DiskFileItemFactory());
-		String path = null;
-		File f = null;
+		int statusCode = HttpServletResponse.SC_OK;
 		try {
-			// Parsear lista de archivos recibidos
-			// Solo se espera 1, pero se agrega toda la informacion obtenida a 'target.txt'
-			List<FileItem> files = sfu.parseRequest(request);
-			for (FileItem item : files) {
-				path = this.getServletContext().getRealPath("/");
-				f = new File(path + "target.txt");
-				try (FileWriter fw = new FileWriter(f, true)) {
-					fw.append(item.getString());
-				}
-				SyntaxChecker.format(path);
-			}
+			this.procesar(request);
 		} catch (FileUploadException e) {
 			// En caso de que no se pueda recibir el archivo, se envia un codigo de error al
 			// usuario.
 			String error = "Se ha intentado parsear un archivo desde el objeto request, sin exito.";
 			LOGGER.warn(error);
 			LOGGER.warn(e);
-			try {
-				response.sendError(500, error);
-			} catch (Exception exc) {
-				LOGGER.error("No se ha podido enviar el codigo de error");
-				LOGGER.error(exc);
-			}
-		} catch (Exception e) {
+			statusCode = HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
+			
+		} catch (IOException e) {
 			String error = "No se ha podido acceder al archivo. Revise que efectivamente se haya seleccionado y subido un archivo.";
 			LOGGER.warn(error);
-			LOGGER.warn(path);
-			if (f != null) {
-				LOGGER.warn(f.getName());
+			statusCode = HttpServletResponse.SC_BAD_REQUEST;
+		}
+		
+		try {
+			response.setContentType("text/plain");
+			response.setStatus(statusCode);
+			switch (statusCode) {
+			case 200:
+				response.getWriter().append("Se ha subido el archivo de forma exitosa.");
+				break;
+			case 400:
+				response.sendError(statusCode, "No se ha podido acceder al archivo subido.");
+				break;
+			case 500:
+				response.sendError(statusCode, "Ha ocurrido un error al procesar el archivo.");
 			}
-			try {
-				response.sendError(400, error);
-			} catch (Exception exc) {
-				LOGGER.error("No se ha podido enviar el codigo de error");
-				LOGGER.error(exc);
+		} catch (IOException e) {
+			LOGGER.fatal("No se ha podido enviar una respuesta\n{}", e.getMessage());
+		}
+	}
+	
+	private void procesar(HttpServletRequest request) 
+			throws FileUploadException, IOException {
+		ServletFileUpload sfu = new ServletFileUpload(new DiskFileItemFactory());
+		String path = this.getServletContext().getRealPath("/");;
+		File f = new File(path + "target.txt");;
+		
+		List<FileItem> files = sfu.parseRequest(request);
+		for (FileItem item : files) {
+			try (FileWriter fw = new FileWriter(f, true)) {
+				fw.append(item.getString());
 			}
+			SyntaxChecker.format(path);
 		}
 	}
 

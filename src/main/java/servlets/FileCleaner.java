@@ -33,6 +33,13 @@ public class FileCleaner extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		/*
+		 * Este metodo enviar un archivo dump.txt como respuesta, cuyo contenido es
+		 * el de todas las lineas que fueron rechazadas al momento de escribirse el archivo
+		 * target.txt que contiene la lista de entidades.
+		 */
+		
 		response.setContentType("text/plain");
         response.setHeader("Content-disposition", "attachment; filename=dump.txt");
 
@@ -50,9 +57,6 @@ public class FileCleaner extends HttpServlet {
         }
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try{
 			FileUtils.write(new File(this.getServletContext().getRealPath("/" + "target.txt")), "", Charset.defaultCharset());
