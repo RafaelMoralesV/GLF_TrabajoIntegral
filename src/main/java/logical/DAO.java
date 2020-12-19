@@ -45,7 +45,7 @@ public class DAO {
 	}
 	
 	public static void crear(String path, String id) 
-			throws NumberFormatException, IllegalStateException{
+			throws NumberFormatException{
 		List<Entidad> l = cargar(path);
 		for(Entidad e : l) {
 			if(e.getTipo() == 'C' && e.getIdentificador() == Integer.parseInt(id)) {

@@ -34,6 +34,10 @@ public class AsignarProducto extends HttpServlet {
 				if(producto < 0 || producto > 1000) {
 					throw new IllegalStateException("La cantidad de producto ingresada es invalida.");
 				}
+				if(producto == 0) {
+					// se asume en este caso que este punto de venta no requiere visita.
+					continue;
+				}
 				if(!DAO.agregar(this.getServletContext().getRealPath("/"), idCD, idPDV[1], producto)) {
 					throw new InsertionException("No se pudo insertar la entidad en ningun camino.");
 				}

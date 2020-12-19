@@ -48,6 +48,8 @@ public class RegistroCamiones extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		int statusCode = HttpServletResponse.SC_OK;
+		
 		DAO.limpiar();
 		Enumeration<?> e = request.getParameterNames();
 		while (e.hasMoreElements()) {
@@ -59,13 +61,26 @@ public class RegistroCamiones extends HttpServlet {
 				}
 			} catch (NumberFormatException ex) {
 				LOGGER.error("No se pudo parsear la ID desde el objeto request.\n{}", ex.getMessage());
+				statusCode = HttpServletResponse.SC_BAD_REQUEST;
+				break;
 			}
 		}
 		
-		
-		response.setContentType("text/plain");
-		response.setStatus(200);
-		response.getWriter().append("Se ha agregado correctamente");
+		try {
+			response.setContentType("text/plain");
+			switch(statusCode) {
+			case 200:
+				response.setStatus(statusCode);
+				response.getWriter().append("Se ha agregado correctamente");
+				break;
+			case 400:
+				response.sendError(statusCode, "Una o mas IDs recibidas eran incorrectas.");
+				break;
+			}
+		} catch(IOException ioe) {
+			LOGGER.fatal("No se ha podido enviar una respuesta al usuario.\n{}", ioe.getMessage());
+			LOGGER.debug(ioe.getStackTrace());
+		}
 	}
 
 }
