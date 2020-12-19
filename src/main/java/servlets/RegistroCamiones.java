@@ -48,6 +48,7 @@ public class RegistroCamiones extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		DAO.limpiar();
 		Enumeration<?> e = request.getParameterNames();
 		while (e.hasMoreElements()) {
 			String id = (String) e.nextElement();

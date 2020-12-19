@@ -18,6 +18,7 @@ public class AsignarProducto extends HttpServlet {
 	protected static final Logger LOGGER = LogManager.getLogger(AsignarProducto.class.getName());
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		DAO.vaciarCaminos();
 		Enumeration<?> e = request.getParameterNames();
 		while (e.hasMoreElements()) {
 			String idSel = (String) e.nextElement();

@@ -68,8 +68,6 @@ public class Camino {
 			// si es que esta configuracion es la mejor que se ha encontrado.
 			this.cola.add(i, e);
 			double aux = this.distanciaTotal();
-			System.out.print("Agregado en indice " + i + "\t");
-			System.out.println(aux);
 			if (aux < mejorDistancia) {
 				mejorDistancia = aux;
 				mejorCamino = (LinkedList<PuntoDeVenta>) this.cola.clone();
