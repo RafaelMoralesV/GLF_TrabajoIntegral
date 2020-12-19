@@ -26,7 +26,7 @@ public class SyntaxChecker {
 		
 		final Logger logger = LogManager.getLogger(SyntaxChecker.class.getName());
 
-		final String REGEX = "[P|C][;]\\d+[;]\\d+[,]\\d+";
+		final String REGEX = "[P|C][;]\\d+[;]-?\\d+[,]-?\\d+";
 
 		try {
 			// Consigue una lista de lineas desde el archivo
