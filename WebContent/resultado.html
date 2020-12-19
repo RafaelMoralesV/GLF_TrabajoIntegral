@@ -32,29 +32,30 @@ function load(){
 				const idCD = camino.id;
 				const listaPDV = camino.list;
 				var cont = parseInt(i)+1;
-				var mainContainer = document.getElementById("detail");
-				var header = document.createElement("div");
-				header.innerHTML = '<div>Camino numero ' + (cont) + ':</div>'
-				mainContainer.appendChild(header);
-				var headerlista = document.createElement("ol");
+				var html = '<ol>';
+				for(n in entidades){
+					var ent = entidades[n];
+					if(ent.ID == idCD){
+						var mainContainer = document.getElementById("detail");
+						var header = document.createElement("div");
+						header.innerHTML = 'Camino numero ' + (cont) + ' partiendo en (C) ID: ' + idCD + ' en: (' + ent.posX + ',' + ent.posY + ')'
+						mainContainer.appendChild(header);
+					}
+				}
 				for(j in listaPDV){
 					const entidad = listaPDV[j];
-					
 					const idPDV = entidad.id;
 					const producto = entidad.producto;
-					
 					for(k in entidades){
 						var ent = entidades[k];
 						if(ent.ID == idPDV){
-							
-							var punto = document.createElement(li);
-							punto.innerHTML = '(P) ID: ' + idPDV + ' en: (' + ent.posX + ',' + ent.posY + ')';
-							headerlista.appendChild(punto);
+							html += '<li>(P) ID: ' + idPDV + ' en: (' + ent.posX + ',' + ent.posY + ')</li>';
 						}
 					}
-					
 				}
-				maincontainer.appendChile(headerlista);
+				html += '</ol>';
+				console.log(html);
+				$('#detail').append(html);
 			}
 		
 		});
@@ -80,8 +81,7 @@ function load(){
 		</div>
 		<div class="resultado1 bg-dark text-light">
 			<h6>Caminos</h6>
-			<div class="resultado__output" id="detail">
-			</div>
+			<div class="resultado__output" id="detail"></div>
 
 
 
