@@ -31,7 +31,12 @@ function load(){
 				
 				const idCD = camino.id;
 				const listaPDV = camino.list;
-				
+				var cont = parseInt(i)+1;
+				var mainContainer = document.getElementById("detail");
+				var header = document.createElement("div");
+				header.innerHTML = '<div>Camino numero ' + (cont) + ':</div>'
+				mainContainer.appendChild(header);
+				var headerlista = document.createElement("ol");
 				for(j in listaPDV){
 					const entidad = listaPDV[j];
 					
@@ -41,11 +46,17 @@ function load(){
 					for(k in entidades){
 						var ent = entidades[k];
 						if(ent.ID == idPDV){
-							console.log(`${ent.ID}: (${ent.posX}, ${ent.posY})`);
+							
+							var punto = document.createElement(li);
+							punto.innerHTML = '(P) ID: ' + idPDV + ' en: (' + ent.posX + ',' + ent.posY + ')';
+							headerlista.appendChild(punto);
 						}
 					}
+					
 				}
+				maincontainer.appendChile(headerlista);
 			}
+		
 		});
 	});
 }
@@ -53,7 +64,7 @@ function load(){
 </script>
 
 </head>
-<body>
+<body onload="load();">
 	<div>
 		<a href="index.html">
 			<h1 id="titulo">Registro coordenadas GPS</h1>
@@ -67,16 +78,23 @@ function load(){
 					Resultado</a>
 			</h6>
 		</div>
+		<div class="resultado1 bg-dark text-light">
+			<h6>Caminos</h6>
+			<div class="resultado__output" id="detail">
+			</div>
+
+
+
+		</div>
 	</div>
 
 	<div class="d-flex justify-content-end fixed-bottom mb-5 mr-5">
-	<a href="index.html"><button
-			class="btn btn-danger btn-lg ">Finalizar</button></a>
-			</div>
+		<a href="index.html"><button class="btn btn-danger btn-lg ">Finalizar</button></a>
+	</div>
 	<div>
 		<a href="asignarPuntosdeVenta.html"><button
-						class="btn btn-danger btn-lg  d-flex fixed-bottom" id="dump">Volver</button></a>
-						</div>
+				class="btn btn-danger btn-lg  d-flex fixed-bottom" id="dump">Volver</button></a>
+	</div>
 
 </body>
 </html>
