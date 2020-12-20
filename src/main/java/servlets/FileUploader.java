@@ -78,6 +78,10 @@ public class FileUploader extends HttpServlet {
 				break;
 			case 500:
 				response.sendError(statusCode, "Ha ocurrido un error al procesar el archivo.");
+				break;
+			default:
+				statusCode = 418; // IM A TEAPOT
+				response.sendError(statusCode, "Ha ocurrido un error inesperado.");
 			}
 		} catch (IOException e) {
 			LOGGER.fatal("No se ha podido enviar una respuesta\n{}", e.getMessage());
@@ -87,8 +91,8 @@ public class FileUploader extends HttpServlet {
 	private void procesar(HttpServletRequest request) 
 			throws FileUploadException, IOException {
 		ServletFileUpload sfu = new ServletFileUpload(new DiskFileItemFactory());
-		String path = this.getServletContext().getRealPath("/");;
-		File f = new File(path + "target.txt");;
+		String path = this.getServletContext().getRealPath("/");
+		File f = new File(path + "target.txt");
 		
 		List<FileItem> files = sfu.parseRequest(request);
 		for (FileItem item : files) {

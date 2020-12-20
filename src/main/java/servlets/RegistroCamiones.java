@@ -68,14 +68,12 @@ public class RegistroCamiones extends HttpServlet {
 		
 		try {
 			response.setContentType("text/plain");
-			switch(statusCode) {
-			case 200:
+			if(statusCode == 200) {
 				response.setStatus(statusCode);
 				response.getWriter().append("Se ha agregado correctamente");
-				break;
-			case 400:
+			}
+			if(statusCode == 400) {
 				response.sendError(statusCode, "Una o mas IDs recibidas eran incorrectas.");
-				break;
 			}
 		} catch(IOException ioe) {
 			LOGGER.fatal("No se ha podido enviar una respuesta al usuario.\n{}", ioe.getMessage());

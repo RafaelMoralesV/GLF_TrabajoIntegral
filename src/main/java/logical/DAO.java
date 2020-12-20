@@ -11,6 +11,10 @@ public class DAO {
 	static List<Camino> lista = new ArrayList<>();
 	protected static final Logger LOGGER = LogManager.getLogger(DAO.class.getName());
 	
+	private DAO() {
+		throw new IllegalStateException("Clase de utilidad.");
+	}
+	
 	public static void limpiar() {
 		lista = new ArrayList<>();
 	}
@@ -18,7 +22,7 @@ public class DAO {
 	public static void vaciarCaminos() {
 		for(int i = 0; i < lista.size(); i++) {
 			Camino c = lista.get(i);
-			c.setCola(new LinkedList<PuntoDeVenta>());
+			c.setCola(new LinkedList<>());
 		}
 	}
 	
@@ -33,8 +37,7 @@ public class DAO {
 		return l;
 	}
 	
-	private static Entidad iniciar(String path, String id) 
-			throws NumberFormatException{
+	private static Entidad iniciar(String path, String id) {
 		List<Entidad> l = cargar(path);
 		for(Entidad e : l) {
 			if(e.getIdentificador() == Integer.parseInt(id)) {
@@ -44,8 +47,7 @@ public class DAO {
 		return new Entidad();
 	}
 	
-	public static void crear(String path, String id) 
-			throws NumberFormatException{
+	public static void crear(String path, String id) {
 		List<Entidad> l = cargar(path);
 		for(Entidad e : l) {
 			if(e.getTipo() == 'C' && e.getIdentificador() == Integer.parseInt(id)) {

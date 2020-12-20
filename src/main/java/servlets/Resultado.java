@@ -26,6 +26,7 @@ public class Resultado extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected static final Logger LOGGER = LogManager.getLogger(Resultado.class.getName());
 
+	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/*
 		 * Este servlet retorna una respuesta HTML de contenido application/json
@@ -36,7 +37,7 @@ public class Resultado extends HttpServlet {
 		 * Estructura del Json
 		 * [ camino, camino, camino ]
 		 * donde camino es un objeto de la siguiente forma
-		 * { id: { id de la entidad }, list: [ e1, e2, ..., en ] }
+		 *  id: { id de la entidad }, list: [ e1, e2, ..., en ] 
 		 * donde id es la id de un centro de
 		 * distribucion, y lista contiene una lista de objetos en la
 		 * en la siguiente estructura:
@@ -74,14 +75,23 @@ public class Resultado extends HttpServlet {
 			LOGGER.error("Ha ocurrido un error al escribir el documento JSON.\n{}", e.getMessage());
 		}
 		response.setContentType("application/json");
-		response.getWriter().append(caminos.toString());
+		try {
+			response.getWriter().append(caminos.toString());
+		} catch (IOException ioe) {
+			LOGGER.fatal("No se ha podido enviar la respuesta JSON al usuraio");
+			LOGGER.debug(ioe.getStackTrace());
+		}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		try {
+			response.sendError(HttpServletResponse.SC_NOT_IMPLEMENTED,
+					"Este canal solo deberia ser utilizado para realizar request tipo GET");
+		} catch (IOException ioe) {
+			LOGGER.fatal("No se ha podido enviar un codigo de error al usuario");
+			LOGGER.debug(ioe.getStackTrace());
+		}
 	}
 
 }

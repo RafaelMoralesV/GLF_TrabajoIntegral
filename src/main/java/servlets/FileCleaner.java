@@ -19,19 +19,15 @@ import org.apache.logging.log4j.Logger;
  * Servlet implementation class FileCleaner
  */
 public class FileCleaner extends HttpServlet {
-	private final int ARBITARY_SIZE = 1048;
+	private static final int ARBITRARYSIZE = 1048;
 	private static final long serialVersionUID = 1L;
 	protected static final Logger LOGGER = LogManager.getLogger(FileCleaner.class.getName());
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+
     public FileCleaner() {
         super();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+    @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		/*
@@ -47,26 +43,36 @@ public class FileCleaner extends HttpServlet {
         try(InputStream in = this.getServletContext().getResourceAsStream("dump.txt");
           OutputStream out = response.getOutputStream()) {
 
-            byte[] buffer = new byte[ARBITARY_SIZE];
+            byte[] buffer = new byte[ARBITRARYSIZE];
         
             int numBytesRead;
             while ((numBytesRead = in.read(buffer)) > 0) {
                 out.write(buffer, 0, numBytesRead);
             }
-            FileUtils.write(new File(this.getServletContext().getRealPath("/" + "dump.txt")), "", Charset.defaultCharset());
+            String path = this.getServletContext().getRealPath("/");
+            FileUtils.write(new File(path + "dump.txt"), "", Charset.defaultCharset());
+        } catch (IOException ioe) {
+        	LOGGER.error("Ha ocurrido un error al intentar enviar el archivo dump.txt");
+        	LOGGER.debug(ioe.getStackTrace());
         }
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try{
-			FileUtils.write(new File(this.getServletContext().getRealPath("/" + "target.txt")), "", Charset.defaultCharset());
+			String path = this.getServletContext().getRealPath("/");
+			FileUtils.write(new File(path + "target.txt"), "", Charset.defaultCharset());
 			LOGGER.debug("Archivo limpiado exitosamente.");
 		} catch(IOException e) {
 			LOGGER.fatal("No pudo limpiarse los contenidos de target.txt\n{}", e.getMessage());
 		}
 		response.setStatus(200);
 		response.setContentType("text/plain");
+		try {
 		response.getWriter().append("Se ha vaciado la lista con exito");
+		} catch (IOException ioe) {
+			LOGGER.fatal("No se pudo enviar una respuesta al usuario.");
+		}
 	}
 
 }

@@ -46,7 +46,7 @@ public class Camino {
 	 * METODOS LOGICOS
 	 */
 	@SuppressWarnings("unchecked")
-	public LinkedList<PuntoDeVenta> simular(PuntoDeVenta e) {
+	public List<PuntoDeVenta> simular(PuntoDeVenta e) {
 
 		/*
 		 * Esta funcion consigue un mejor camino mediante fuerza bruta y retorna esa
@@ -58,7 +58,7 @@ public class Camino {
 		LinkedList<PuntoDeVenta> mejorCamino = (LinkedList<PuntoDeVenta>) this.cola.clone();
 		double mejorDistancia = Double.MAX_VALUE;
 
-		if (estadoInicial.size() == 0) {
+		if (estadoInicial.isEmpty()) {
 			mejorCamino.add(e);
 			return mejorCamino;
 		}
@@ -80,14 +80,14 @@ public class Camino {
 	}
 
 	public Camino simularCamino(PuntoDeVenta e) {
-		LinkedList<PuntoDeVenta> mejor = this.simular(e);
+		LinkedList<PuntoDeVenta> mejor = (LinkedList<PuntoDeVenta>) this.simular(e);
 		Camino ret = new Camino(this.inicio);
 		ret.setCola(mejor);
 		return ret;
 	}
 
 	public void agregarEntidad(PuntoDeVenta e) {
-		this.cola = this.simular(e);
+		this.cola = (LinkedList<PuntoDeVenta>) this.simular(e);
 		this.cargaActual += e.getNeededProduct();
 	}
 

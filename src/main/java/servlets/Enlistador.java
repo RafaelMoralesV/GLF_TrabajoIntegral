@@ -34,7 +34,7 @@ public class Enlistador extends HttpServlet {
 		 * que son cargables desde el archivo target.txt
 		 */
 		
-		int statusCode = HttpServletResponse.SC_OK; // SC_OK = 200;
+		int statusCode = HttpServletResponse.SC_OK;
 		List<logical.Entidad> lista = new ArrayList<>();
 		try {
 			String path = this.getServletContext().getRealPath("/");
