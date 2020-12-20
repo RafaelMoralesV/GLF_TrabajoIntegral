@@ -50,17 +50,19 @@ public class AsignarProducto extends HttpServlet {
 			} catch (NullPointerException npe) {
 				LOGGER.error("Se ha intentado agregar un punto de venta a un centro que no posee camiones hoy.");
 				statusCode = HttpServletResponse.SC_CONFLICT;
+				break;
 			} catch (InsertionException ie) {
-				LOGGER.error(ie.getMessage());
-				LOGGER.error("Este error puede ocurrir cuando ningun camino tiene capacidad suficiente para "
-						+ "insertar esta entidad, y es normalmente un error de algoritmo.");
+				LOGGER.error("No se ha podido asignar una entidad a ningun camino. Esto puede ocurrir cuando no existen caminos disponibles donde agregar esta entidad");
 				statusCode = HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
+				break;
 			} catch(NumberFormatException nfe) {
 				LOGGER.error("El producto necesario no es un valor entero, y ha producido un error.");
 				statusCode =  HttpServletResponse.SC_BAD_REQUEST;
+				break;
 			} catch(IllegalStateException ise) {
 				LOGGER.error("El producto necesario es una cantidad invalida o imposible y no puede ser utilizado.");
 				statusCode = HttpServletResponse.SC_BAD_REQUEST;
+				break;
 			}
 		}
 		
