@@ -49,11 +49,11 @@ public class AsignarProducto extends HttpServlet {
 				this.procesar(e, request);
 			} catch (NullPointerException npe) {
 				LOGGER.error("Se ha intentado agregar un punto de venta a un centro que no posee camiones hoy.");
-				statusCode = HttpServletResponse.SC_CONFLICT;
+				statusCode = HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
 				break;
 			} catch (InsertionException ie) {
 				LOGGER.error("No se ha podido asignar una entidad a ningun camino. Esto puede ocurrir cuando no existen caminos disponibles donde agregar esta entidad");
-				statusCode = HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
+				statusCode = HttpServletResponse.SC_CONFLICT;
 				break;
 			} catch(NumberFormatException nfe) {
 				LOGGER.error("El producto necesario no es un valor entero, y ha producido un error.");
