@@ -1,7 +1,7 @@
 #titulo {
-	background-color: grey;
+	background-color:#239adf63;
 	color: black;
-	padding: 40px;
+	padding: 10px;
 	margin-bottom: 0;
 	text-align: center;
 }
@@ -92,25 +92,25 @@ body, html {
 
 }
 
-a:link, a:visited, a:hover, a:active { color: red;
+a:link, a:visited, a:hover, a:active { color: #000000;
        text-decoration: none!important;
      }
 .resaltar{
-       background-color:grey;
-       border: 2px double black;
+       background-color:#00c6f75e;
+       border: 2px double #00c6f752;
        border-radius: 10px;
        padding: 4px;
-       color:#fff;
+       color:#ffffff;
 }
 .files input {
     outline: 2px dashed #92b0b3;
     outline-offset: -10px;
     -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
     transition: outline-offset .15s ease-in-out, background-color .15s linear;
-    padding: 120px 0px 85px 35%;
-    text-align: center !important;
-    margin: 0;
-    width: 100% !important;
+    padding: 75px 0px 70px 15%;
+	text-align: center !important;
+    margin: auto;
+    width: 90% !important;
 }
 .files input:focus{     outline: 2px dashed #92b0b3;  outline-offset: -10px;
     -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
@@ -128,7 +128,7 @@ a:link, a:visited, a:hover, a:active { color: red;
     background-image: url(https://image.flaticon.com/icons/png/128/109/109612.png);
     display: block;
     margin: 0 auto;
-    background-size: 100%;
+    background-size: 70%;
     background-repeat: no-repeat;
 }
 .color input{ background-color:#f1f1f1;}
@@ -139,26 +139,23 @@ a:link, a:visited, a:hover, a:active { color: red;
     width: 100%;
     right: 0;
     height: 57px;
-    content: " or drag it here. ";
+    content: " o arrastre aqui. ";
     display: block;
     margin: 0 auto;
-    color: #2ea591;
+    color: #be0f03;
     font-weight: 600;
     text-transform: capitalize;
     text-align: center;
 }
 #dump{
-	margin-left: 100px;
-	margin-bottom:47px;
+	margin-left: 25px;
+	margin-bottom:60px;
 }
 #eliminar{
-	margin-left: 400px;
-	margin-bottom:47px;
+	margin-left: 25px;
+	margin-bottom:125px;
 }
 .zindex{
 	z-index: -1;
 }
-.center {
-  text-align: center;
-  list-style-position: inside;
-}
+

@@ -28,7 +28,7 @@ function load(){
 				const idCD = camino.id;
 				const listaPDV = camino.list;
 				var cont = parseInt(i)+1;
-				var html = '<ol class="center mt-3">';
+				var html = '<ol>';
 				for(n in entidades){
 					var ent = entidades[n];
 					if(ent.ID == idCD){
@@ -45,7 +45,7 @@ function load(){
 					for(k in entidades){
 						var ent = entidades[k];
 						if(ent.ID == idPDV){
-							html += '<li>(P) ID: ' + idPDV + ' en: (' + ent.posX + ',' + ent.posY + ') con '+ producto + ' productos</li>';
+							html += '<li>(P) ID: ' + idPDV + ' en: (' + ent.posX + ',' + ent.posY + ')</li>';
 						}
 					}
 				}
@@ -64,7 +64,7 @@ function load(){
 <body onload="load();">
 	<div>
 		<a href="index.html">
-			<h1 id="titulo">Registro coordenadas GPS</h1>
+			<h2 id="titulo">Registro coordenadas GPS</h2>
 		</a>
 		<div class="d-flex justify-content-end pr-4 pt-2">
 			<h6>

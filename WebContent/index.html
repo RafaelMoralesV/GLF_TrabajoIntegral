@@ -65,7 +65,7 @@
 	<div>
 		<div>
 			<a href="index.html">
-				<h1 id="titulo">Registro coordenadas GPS</h1>
+				<h2 id="titulo">Registro coordenadas GPS</h2>
 			</a>
 			<div class="d-flex justify-content-end pr-4 pt-2">
 				<h6>
@@ -80,13 +80,13 @@
 					<form action="FileUploader" method="post"
 						enctype="multipart/form-data">
 						<div class="form-group files color">
-							<label>Upload Your File </label> <input id="FileUpload"
+							<label>Subir Archivo </label> <input id="FileUpload"
 								type="file" name="fileName" accept=".txt" class="form-control"
 								multiple="">
 						</div>
 						<input
 							class="btn btn-danger btn-lg btn-xs mx-auto text-center mb-4 "
-							type="button" value="Upload" id="Upload">
+							type="button" value="Subir" id="Upload">
 
 					</form>
 				</div>
@@ -106,7 +106,7 @@
 		<!--  POR FAVOR DEJENLO BONITO GRACIAS -->
 		
 		<div>
-			<input type="button" id="eliminar" value="Borrar lista de entidades" class="btn btn-danger btn-lg  d-flex fixed-bottom"></input>
+			<input type="button" id="eliminar" value="Borrar lista de entidades  " class="btn btn-danger btn-lg  d-flex fixed-bottom"></input>
 			<script>
 				$("#eliminar").on("click", () => {
 					$.post("FileCleaner", (response) => {
@@ -116,7 +116,8 @@
 					 $('#appear').attr('disabled', 'disabled');
 				});
 			</script>
-		
+		</div>
+		<div>
 			<input type="button" id="dump" value="Obtener texto rechazado" class="btn btn-danger btn-lg d-flex fixed-bottom"></input>
 			<label id="status"></label>
 			<script>
