@@ -17,54 +17,52 @@ public class AsignarProducto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected static final Logger LOGGER = LogManager.getLogger(AsignarProducto.class.getName());
 
-	
 	private void procesar(Enumeration<?> e, HttpServletRequest request) {
 		String idSel = (String) e.nextElement();
 		String idCD = request.getParameter(idSel);
 		String idProd = (String) e.nextElement();
 		String resProd = request.getParameter(idProd);
-		
+
 		String[] idPDV = idSel.split("-");
 		int producto = Integer.parseInt(resProd);
-		if(producto < 0 || producto > 1000) {
+		if (producto < 0 || producto > 1000) {
 			throw new IllegalStateException("La cantidad de producto ingresada es invalida.");
 		}
-		if(producto == 0) {
+		if (producto == 0) {
 			// se asume en este caso que este punto de venta no requiere visita.
 			return;
 		}
-		if(!DAO.agregar(this.getServletContext().getRealPath("/"), idCD, idPDV[1], producto)) {
+		if (!DAO.agregar(this.getServletContext().getRealPath("/"), idCD, idPDV[1], producto)) {
 			throw new InsertionException("No se pudo insertar la entidad en ningun camino.");
 		}
 	}
-	
+
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int statusCode = HttpServletResponse.SC_OK;
 		
 		DAO.vaciarCaminos();
 		Enumeration<?> e = request.getParameterNames();
-		while (e.hasMoreElements()) {
-			try {
+		
+		try {
+			while (e.hasMoreElements()) {
 				this.procesar(e, request);
-			} catch (NullPointerException npe) {
-				LOGGER.error("Se ha intentado agregar un punto de venta a un centro que no posee camiones hoy.");
-				statusCode = HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
-				break;
-			} catch (InsertionException ie) {
-				LOGGER.error("No se ha podido asignar una entidad a ningun camino. Esto puede ocurrir cuando no existen caminos disponibles donde agregar esta entidad");
-				statusCode = HttpServletResponse.SC_CONFLICT;
-				break;
-			} catch(NumberFormatException nfe) {
-				LOGGER.error("El producto necesario no es un valor entero, y ha producido un error.");
-				statusCode =  HttpServletResponse.SC_BAD_REQUEST;
-				break;
-			} catch(IllegalStateException ise) {
-				LOGGER.error("El producto necesario es una cantidad invalida o imposible y no puede ser utilizado.");
-				statusCode = HttpServletResponse.SC_BAD_REQUEST;
-				break;
 			}
+		} catch (NullPointerException npe) {
+			LOGGER.error("Se ha intentado agregar un punto de venta a un centro que no posee camiones hoy.");
+			statusCode = HttpServletResponse.SC_INTERNAL_SERVER_ERROR;
+		} catch (InsertionException ie) {
+			LOGGER.error(
+					"No se ha podido asignar una entidad a ningun camino. Esto puede ocurrir cuando no existen caminos disponibles donde agregar esta entidad");
+			statusCode = HttpServletResponse.SC_CONFLICT;
+		} catch (NumberFormatException nfe) {
+			LOGGER.error("El producto necesario no es un valor entero, y ha producido un error.");
+			statusCode = HttpServletResponse.SC_BAD_REQUEST;
+		} catch (IllegalStateException ise) {
+			LOGGER.error("El producto necesario es una cantidad invalida o imposible y no puede ser utilizado.");
+			statusCode = HttpServletResponse.SC_BAD_REQUEST;
 		}
+		
 		
 		try {
 			response.setContentType("Text/plain");
