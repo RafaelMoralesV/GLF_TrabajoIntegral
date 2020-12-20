@@ -34,6 +34,7 @@ function load(){
 					if(ent.ID == idCD){
 						var mainContainer = document.getElementById("detail");
 						var header = document.createElement("div");
+						header.className = "mb-3 mt-5"
 						header.innerHTML = 'Camino numero ' + (cont) + ' partiendo en (C) ID: ' + idCD + ' en: (' + ent.posX + ',' + ent.posY + ')'
 						mainContainer.appendChild(header);
 					}
@@ -45,7 +46,7 @@ function load(){
 					for(k in entidades){
 						var ent = entidades[k];
 						if(ent.ID == idPDV){
-							html += '<li>(P) ID: ' + idPDV + ' en: (' + ent.posX + ',' + ent.posY + ')</li>';
+							html += '<li class="my-1">(P) ID: ' + idPDV + ' en: (' + ent.posX + ',' + ent.posY + ') con '+ producto + ' productos</li>';
 						}
 					}
 				}
@@ -75,9 +76,9 @@ function load(){
 					Resultado</a>
 			</h6>
 		</div>
-		<div class="resultado1 bg-dark text-light">
-			<h6>Caminos</h6>
-			<div class="resultado__output" id="detail"></div>
+		<div class=" bg-dark text-light resultado2 ">
+			<h6 class="mb-5">Caminos</h6>
+			<div id="detail"></div>
 
 
 
